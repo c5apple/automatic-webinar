@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { WebinarService } from 'shared/service';
+import { Webinar } from 'shared/interface';
 
 @Component({
   selector: 'app-webinar-list',
@@ -18,7 +19,7 @@ export class WebinarListComponent implements OnInit {
     let webiinarId = 1;
 
     // ウェビナーを検索する
-    this.webinarService.getWebinar(webiinarId).subscribe((webinar) => {
+    this.webinarService.getWebinar(webiinarId).subscribe((webinar: Webinar) => {
       console.log(webinar);
     });
   }
