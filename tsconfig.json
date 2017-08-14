@@ -6,6 +6,9 @@
     "paths": {
       "shared/*": [
         "app/shared/*"
+      ],
+      "env/*": [
+        "environments/*"
       ]
     },
     "sourceMap": true,
