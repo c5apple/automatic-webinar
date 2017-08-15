@@ -6,7 +6,7 @@ import { Webinar } from 'shared/interface';
 @Component({
   selector: 'app-webinar-list',
   templateUrl: './webinar-list.component.html',
-  styleUrls: ['./webinar-list.component.sass']
+  styleUrls: ['./webinar-list.component.scss']
 })
 export class WebinarListComponent implements OnInit {
 
