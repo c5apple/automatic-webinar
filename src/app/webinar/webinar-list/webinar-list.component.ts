@@ -19,9 +19,8 @@ export class WebinarListComponent implements OnInit {
     let webiinarId = 1;
 
     // ウェビナーを検索する
-    this.webinarService.getWebinar(webiinarId).subscribe((webinar: Webinar) => {
-      console.log(webinar);
+    this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
+      console.log(webinars);
     });
   }
-
 }
