@@ -4,6 +4,9 @@ import { MyDatabase, MyDataSource } from 'shared/model';
 import { WebinarService } from 'shared/service';
 import { Webinar } from 'shared/interface';
 
+/**
+ * ウェビナー一覧
+ */
 @Component({
   selector: 'app-webinar-list',
   templateUrl: './webinar-list.component.html',
@@ -19,9 +22,6 @@ export class WebinarListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // TODO ウェビナーID
-    let webiinarId = 1;
-
     // ウェビナーを検索する
     this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
       console.log(webinars);
