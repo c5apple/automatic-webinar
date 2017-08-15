@@ -10,6 +10,7 @@ try {
 
   require_once('./service/filer.php');
   require_once('./service/logger.php');
+  require_once('./service/stringUtil.php');
   require_once('./model/queryExecuter.php');
 
   $do = filter_input(INPUT_GET, 'do');

@@ -383,9 +383,9 @@ class dao {
     $sql = $this->base_sql_update;
     $sql .= $this->createSet(
             array(
-                'delete_flg'  => 1,
-                'update_user' => Me::getInstance()->{'id'},
-                'update_day'  => Common::toDatabaseDate($now),
+                'delete_flg' => 1,
+//                'update_user' => Me::getInstance()->{'id'}, // TODO ログインユーザ
+                'update_day' => StringUtil::toDatabaseDate($now),
             )
     );
     $sql .= $this->createWhere($array_where);

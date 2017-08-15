@@ -19,11 +19,13 @@ class webinarAction extends Action {
   }
 
   /**
-   * ウェビナー取得 / ウェビナー登録
+   * ウェビナー取得 / ウェビナー登録 / ウェビナー削除
    */
   public function webinar() {
     if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
       $this->saveWebinar();
+    } else if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'DELETE') {
+      $this->deleteWebinar();
     } else {
       $this->getWebinar();
     }
@@ -64,6 +66,35 @@ class webinarAction extends Action {
    */
   private function saveWebinar() {
 
+  }
+
+  /**
+   * ウェビナー削除
+   */
+  private function deleteWebinar() {
+    // ウェビナーIDリスト
+    $webinar_id_list = isset($_GET['id']) && is_array($_GET['id']) ? $_GET['id'] : array();
+    $webinar_id_list = array_filter($webinar_id_list, function($webinar) {
+      return is_numeric($webinar);
+    });
+
+    if ($webinar_id_list && 0 < count($webinar_id_list)) {
+
+      array_walk($webinar_id_list, function($webinar_id) {
+
+        $where = array('id' => $webinar_id);
+
+        // 論理削除
+        $ret = $this->webinar->deleteFlg($where);
+        if (!$ret) {
+          // TODO 500 error
+          $ret = false;
+        }
+      });
+      echo json_encode(true);
+    } else {
+      return parent::forbidden();
+    }
   }
 
 }
