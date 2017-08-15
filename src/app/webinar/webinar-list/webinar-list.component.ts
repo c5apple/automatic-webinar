@@ -105,7 +105,7 @@ export class WebinarListComponent implements OnInit {
     if (this.database.data.length === 0) {
       return;
     }
-    const header = [Object.keys(this.database.data[0]).join(',')]
+    const header = [Object.keys(this.database.data[0]).join(',')];
     const body = this.database.data.map((webinar, index) => Object.values(webinar).join(','));
     const data = Array.prototype.concat(header, body).join('\r\n');
 
@@ -115,7 +115,7 @@ export class WebinarListComponent implements OnInit {
     if (navigator.msSaveOrOpenBlob) {
       navigator.msSaveBlob(blob, 'webinar.csv');
     } else {
-      let a = document.createElement('a');
+      const a = document.createElement('a');
       a.href = url;
       a.download = 'webinar.csv';
       document.body.appendChild(a);
