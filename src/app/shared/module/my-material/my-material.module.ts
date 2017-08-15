@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
+import { CdkTableModule } from '@angular/cdk';
 import {
   MdCardModule,
-  MdIconModule
+  MdIconModule,
+  MdTableModule
 } from '@angular/material';
 
 @NgModule({
   imports: [
+    CdkTableModule,
     MdCardModule,
-    MdIconModule
+    MdIconModule,
+    MdTableModule
   ],
   exports: [
+    CdkTableModule,
     MdCardModule,
-    MdIconModule
+    MdIconModule,
+    MdTableModule
   ],
   declarations: []
 })

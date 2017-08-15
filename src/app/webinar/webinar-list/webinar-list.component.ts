@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MyDatabase, MyDataSource } from 'shared/model';
 import { WebinarService } from 'shared/service';
 import { Webinar } from 'shared/interface';
 
@@ -9,6 +10,9 @@ import { Webinar } from 'shared/interface';
   styleUrls: ['./webinar-list.component.scss']
 })
 export class WebinarListComponent implements OnInit {
+  displayedColumns = ['id', 'name'];
+  exampleDatabase: MyDatabase<Webinar>;
+  dataSource: MyDataSource<Webinar> | null;
 
   constructor(
     private webinarService: WebinarService
@@ -21,6 +25,10 @@ export class WebinarListComponent implements OnInit {
     // ウェビナーを検索する
     this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
       console.log(webinars);
+      if ('length' in webinars && 0 < webinars.length) {
+        this.exampleDatabase = new MyDatabase<Webinar>(webinars);
+        this.dataSource = new MyDataSource<Webinar>(this.exampleDatabase);
+      }
     });
   }
 }
