@@ -58,8 +58,25 @@ export class WebinarListComponent implements OnInit {
    * すべて選択
    */
   clickAll() {
-    this.database.data.slice().forEach(w => {
+    this.database.data.forEach(w => {
       w['checked'] = !this.allChecked;
+    });
+  }
+
+  /**
+   * ウェビナーを削除する
+   */
+  delete() {
+    const webinarIds = this.database.data.filter(w => w['checked']).map(w => w.id);
+    if (webinarIds.length === 0) {
+      return;
+    }
+    // ウェビナーを削除する
+    this.webinarService.deleteWebinar(webinarIds).subscribe(ret => {
+      if (ret) {
+        // リストから削除
+        this.database.data = this.database.data.filter(w => webinarIds.indexOf(w.id) === -1);
+      }
     });
   }
 }

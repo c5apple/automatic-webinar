@@ -5,19 +5,24 @@
   max-height: 500px;
   min-width: 300px;
 }
-.serch {
+.header-container {
   padding-left: 24px;
   min-height: 64px;
   display: flex;
   align-items: baseline;
   padding: 8px 24px 0;
   justify-content: space-between;
+/*  justify-content: flex-end; */
 }
 
 .mat-input-container {
   font-size: 14px;
   flex-grow: 1;
   margin-left: 32px;
+}
+
+.mat-icon-button {
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .mat-table {

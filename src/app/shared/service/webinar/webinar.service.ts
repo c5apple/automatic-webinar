@@ -23,4 +23,20 @@ export class WebinarService extends ApiService {
     }
     return super.getObservable(this.http.get(url)).map(data => data as Webinar | Webinar[]);
   }
+
+  /**
+   * ウェビナーを削除する
+   * @param webinarIds ウェビナーIDリスト
+   */
+  public deleteWebinar(webinarIds: number[]): Observable<any> {
+    let url = `/api/webinar`;
+    const params = new URLSearchParams();
+    webinarIds.forEach(webinarId => {
+      params.append('id[]', webinarId.toString());
+    });
+    url += `?${params.toString()}`;
+
+    return super.getObservable(this.http.delete(url));
+  }
+
 }

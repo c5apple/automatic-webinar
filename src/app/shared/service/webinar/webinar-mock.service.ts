@@ -33,4 +33,13 @@ export class WebinarMockService extends WebinarService {
     }
     return webinars;
   }
+
+  /**
+   * ウェビナーを削除する
+   * @param webinarIds ウェビナーIDリスト
+   */
+  public deleteWebinar(webinarIds: number[]): Observable<any> {
+    return Observable.of({});
+  }
+
 }

@@ -1,8 +1,10 @@
 <md-card class="container">
-  <div class="serch">
+  <div class="header-container">
     <md-input-container floatPlaceholder="never">
       <input mdInput #filter placeholder="検索">
     </md-input-container>
+    <button md-icon-button><md-icon>add</md-icon></button>
+    <button md-icon-button (click)="delete()"><md-icon>delete</md-icon></button>
   </div>
 
   <md-table #table [dataSource]="dataSource">
@@ -33,5 +35,5 @@
     <md-row *cdkRowDef="let row; columns: displayedColumns;" [ngClass]="{selected: row.checked}"></md-row>
   </md-table>
 
-  <md-paginator #paginator [length]="database.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></md-paginator>
+  <md-paginator #paginator [length]="database ? database.data.length : 0" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></md-paginator>
 </md-card>

@@ -6,6 +6,9 @@ export class MyDatabase<T> {
   get data(): T[] {
     return this.dataChange.value;
   }
+  set data(data: T[]) {
+    this.dataChange.next(data);
+  }
 
   constructor(private dataList: T[]) {
     dataList.forEach(data => {

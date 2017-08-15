@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CdkTableModule } from '@angular/cdk';
 import {
+  MdButtonModule,
   MdCardModule,
   MdCheckboxModule,
   MdIconModule,
@@ -12,6 +13,7 @@ import {
 @NgModule({
   imports: [
     CdkTableModule,
+    MdButtonModule,
     MdCardModule,
     MdCheckboxModule,
     MdIconModule,
@@ -21,6 +23,7 @@ import {
   ],
   exports: [
     CdkTableModule,
+    MdButtonModule,
     MdCardModule,
     MdCheckboxModule,
     MdIconModule,
