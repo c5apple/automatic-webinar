@@ -262,8 +262,15 @@ class dao {
     if ($rs && mysql_num_rows($rs) > 0) {
       while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
         // 削除フラグは除外する
-        if (isset($row['delete_flg']) && $row['delete_flg'])
+        if (isset($row['delete_flg']) && $row['delete_flg']) {
           continue;
+        }
+        // 不要カラム
+        unset($row['delete_flg']);
+        unset($row['create_day']);
+        unset($row['create_user']);
+        unset($row['update_day']);
+        unset($row['update_user']);
 
         $ret[$cnt++] = $row;
       }
