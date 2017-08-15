@@ -4,9 +4,11 @@ import {
   MdButtonModule,
   MdCardModule,
   MdCheckboxModule,
+  MdDialogModule,
   MdIconModule,
   MdInputModule,
   MdPaginatorModule,
+  MdSnackBarModule,
   MdTableModule
 } from '@angular/material';
 
@@ -16,9 +18,11 @@ import {
     MdButtonModule,
     MdCardModule,
     MdCheckboxModule,
+    MdDialogModule,
     MdIconModule,
     MdInputModule,
     MdPaginatorModule,
+    MdSnackBarModule,
     MdTableModule
   ],
   exports: [
@@ -26,9 +30,11 @@ import {
     MdButtonModule,
     MdCardModule,
     MdCheckboxModule,
+    MdDialogModule,
     MdIconModule,
     MdInputModule,
     MdPaginatorModule,
+    MdSnackBarModule,
     MdTableModule
   ],
   declarations: []

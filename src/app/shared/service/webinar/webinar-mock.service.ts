@@ -27,7 +27,7 @@ export class WebinarMockService extends WebinarService {
    * ウェビナー一覧 モック作成
    */
   private createWebinars(): Webinar[] {
-    let webinars: Webinar[] = [];
+    const webinars: Webinar[] = [];
     for (let i = 1; i <= 100; i++) {
       webinars.push({ id: i, name: `よく分かるウェビナー講座${i}` } as Webinar);
     }

@@ -29,8 +29,8 @@ export class MyDataSource<T> extends DataSource<any> {
     return Observable.merge(...displayDataChanges).map(() => {
       // filter
       const data = this.db.data.slice().filter((item: T) => {
-        let searchStr = (item['name']).toLowerCase();
-        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        const searchStr = (item['name']).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
       // paginator

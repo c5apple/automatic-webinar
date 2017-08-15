@@ -1,0 +1,6 @@
+<h2 md-dialog-title [innerHtml]="title"></h2>
+<md-dialog-content [innerHtml]="message"></md-dialog-content>
+<md-dialog-actions>
+  <button md-button md-dialog-close>キャンセル</button>
+  <button md-button [md-dialog-close]="true">OK</button>
+</md-dialog-actions>
