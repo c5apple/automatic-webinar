@@ -79,4 +79,32 @@ export class WebinarListComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * CSVダウンロード
+   */
+  downloadCsv() {
+    if (this.database.data.length === 0) {
+      return;
+    }
+    const header = [Object.keys(this.database.data[0]).join(',')]
+    const body = this.database.data.map((webinar, index) => Object.values(webinar).join(','));
+    const data = Array.prototype.concat(header, body).join('\r\n');
+
+    const blob = new Blob([data], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    if (navigator.msSaveOrOpenBlob) {
+      navigator.msSaveBlob(blob, 'webinar.csv');
+    } else {
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = 'webinar.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+    window.URL.revokeObjectURL(url);
+  }
+
 }
