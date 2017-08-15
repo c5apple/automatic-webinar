@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { MdPaginator } from '@angular/material';
+import { MdPaginator, MdDialog, MdDialogRef, MdSnackBar, MdSnackBarRef, SimpleSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -11,6 +11,7 @@ import 'rxjs/add/observable/fromEvent';
 import { MyDatabase, MyDataSource } from 'shared/model';
 import { WebinarService } from 'shared/service';
 import { Webinar } from 'shared/interface';
+import { ConfirmDialogComponent } from 'shared/component';
 
 /**
  * ウェビナー一覧
@@ -32,6 +33,8 @@ export class WebinarListComponent implements OnInit {
   allChecked = false;
 
   constructor(
+    private dialog: MdDialog,
+    private snackBar: MdSnackBar,
     private webinarService: WebinarService
   ) { }
 
@@ -71,12 +74,27 @@ export class WebinarListComponent implements OnInit {
     if (webinarIds.length === 0) {
       return;
     }
-    // ウェビナーを削除する
-    this.webinarService.deleteWebinar(webinarIds).subscribe(ret => {
-      if (ret) {
-        // リストから削除
-        this.database.data = this.database.data.filter(w => webinarIds.indexOf(w.id) === -1);
+
+    // 確認ダイアログ
+    const dialogRef: MdDialogRef<ConfirmDialogComponent> = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.componentInstance.title = `${webinarIds.length}件 削除します`;
+    dialogRef.componentInstance.message = 'よろしいですか？';
+    dialogRef.afterClosed().subscribe((isOk: boolean) => {
+      if (!isOk) {
+        return;
       }
+      // ウェビナーを削除する
+      this.webinarService.deleteWebinar(webinarIds).subscribe(ret => {
+        if (ret) {
+          // リストから削除
+          this.database.data = this.database.data.filter(w => webinarIds.indexOf(w.id) === -1);
+
+          const snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open('削除しました', '元に戻す', { duration: 3000 });
+          snackBarRef.onAction().subscribe(() => {
+            // TODO リストアAPI
+          });
+        }
+      });
     });
   }
 
