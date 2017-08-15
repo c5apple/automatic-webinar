@@ -1,4 +1,10 @@
 <md-card>
+  <div class="serch">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="検索">
+    </md-input-container>
+  </div>
+
   <md-table #table [dataSource]="dataSource">
     <!-- ID Column -->
     <ng-container cdkColumnDef="id">

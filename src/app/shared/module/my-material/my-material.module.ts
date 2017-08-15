@@ -3,6 +3,7 @@ import { CdkTableModule } from '@angular/cdk';
 import {
   MdCardModule,
   MdIconModule,
+  MdInputModule,
   MdPaginatorModule,
   MdTableModule
 } from '@angular/material';
@@ -12,6 +13,7 @@ import {
     CdkTableModule,
     MdCardModule,
     MdIconModule,
+    MdInputModule,
     MdPaginatorModule,
     MdTableModule
   ],
@@ -19,6 +21,7 @@ import {
     CdkTableModule,
     MdCardModule,
     MdIconModule,
+    MdInputModule,
     MdPaginatorModule,
     MdTableModule
   ],
