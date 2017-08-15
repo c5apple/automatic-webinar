@@ -23,3 +23,17 @@
 .mat-table {
   overflow: auto;
 }
+
+.mat-row.selected {
+  background-color: #F5F5F5;
+}
+
+.mat-column-checked {
+  flex-grow: 1;
+}
+.mat-column-id {
+  flex-grow: 1;
+}
+.mat-column-name {
+  flex-grow: 4;
+}

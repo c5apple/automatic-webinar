@@ -29,7 +29,7 @@ export class WebinarMockService extends WebinarService {
   private createWebinars(): Webinar[] {
     let webinars: Webinar[] = [];
     for (let i = 1; i <= 100; i++) {
-      webinars.push({ id: i, name: `よく分かるウェビナー講座${i}` });
+      webinars.push({ id: i, name: `よく分かるウェビナー講座${i}` } as Webinar);
     }
     return webinars;
   }

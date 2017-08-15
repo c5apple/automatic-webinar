@@ -6,6 +6,16 @@
   </div>
 
   <md-table #table [dataSource]="dataSource">
+    <!-- Check Column -->
+    <ng-container cdkColumnDef="checked">
+      <md-header-cell *cdkHeaderCellDef>
+        <md-checkbox [(ngModel)]="allChecked" (click)="clickAll()"></md-checkbox>
+      </md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <md-checkbox [(ngModel)]="row.checked"></md-checkbox>
+      </md-cell>
+    </ng-container>
+
     <!-- ID Column -->
     <ng-container cdkColumnDef="id">
       <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
@@ -20,7 +30,7 @@
 
     <!-- Header -->
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;" [ngClass]="{selected: row.checked}"></md-row>
   </md-table>
 
   <md-paginator #paginator [length]="database.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></md-paginator>

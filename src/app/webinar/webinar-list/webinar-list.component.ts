@@ -21,12 +21,15 @@ import { Webinar } from 'shared/interface';
   styleUrls: ['./webinar-list.component.scss']
 })
 export class WebinarListComponent implements OnInit {
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['checked', 'id', 'name'];
   database: MyDatabase<Webinar>;
   dataSource: MyDataSource<Webinar> | null;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MdPaginator) paginator: MdPaginator;
+
+  /** すべて選択 */
+  allChecked = false;
 
   constructor(
     private webinarService: WebinarService
@@ -48,6 +51,15 @@ export class WebinarListComponent implements OnInit {
             this.dataSource.filter = this.filter.nativeElement.value;
           });
       }
+    });
+  }
+
+  /**
+   * すべて選択
+   */
+  clickAll() {
+    this.database.data.slice().forEach(w => {
+      w['checked'] = !this.allChecked;
     });
   }
 }
