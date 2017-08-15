@@ -2,7 +2,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class MyDatabase<T> {
   dataChange: BehaviorSubject<T[]> = new BehaviorSubject<T[]>([]);
-  get data(): T[] { return this.dataChange.value; }
+
+  get data(): T[] {
+    return this.dataChange.value;
+  }
 
   constructor(private dataList: T[]) {
     dataList.forEach(data => {
@@ -10,9 +13,9 @@ export class MyDatabase<T> {
     });
   }
 
-  add<T>(webinar) {
+  add<T>(addData) {
     const copiedData = this.data.slice();
-    copiedData.push(webinar);
+    copiedData.push(addData);
     this.dataChange.next(copiedData);
   }
 }
