@@ -1,3 +1,10 @@
+.container {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
 .serch {
   padding-left: 24px;
   min-height: 64px;
@@ -11,4 +18,8 @@
   font-size: 14px;
   flex-grow: 1;
   margin-left: 32px;
+}
+
+.mat-table {
+  overflow: auto;
 }
