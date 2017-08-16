@@ -1,0 +1,32 @@
+header {
+  box-shadow: 0 2px 5px rgba(0,0,0,.26);
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  position: fixed;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.title {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  span {
+    display: inline-block;
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 20px;
+
+    &:first-letter {
+      font-weight: bolder;
+      color: red;
+    }
+  }
+}

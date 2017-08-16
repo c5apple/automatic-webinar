@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MyMaterialModule } from 'shared/module';
+import { HeaderModule } from 'shared/component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MyMaterialModule } from 'shared/module';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MyMaterialModule
+    MyMaterialModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
