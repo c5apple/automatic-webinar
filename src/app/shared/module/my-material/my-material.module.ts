@@ -7,9 +7,11 @@ import {
   MdDialogModule,
   MdIconModule,
   MdInputModule,
+  MdMenuModule,
   MdPaginatorModule,
   MdSnackBarModule,
-  MdTableModule
+  MdTableModule,
+  MdToolbarModule
 } from '@angular/material';
 
 @NgModule({
@@ -21,9 +23,11 @@ import {
     MdDialogModule,
     MdIconModule,
     MdInputModule,
+    MdMenuModule,
     MdPaginatorModule,
     MdSnackBarModule,
-    MdTableModule
+    MdTableModule,
+    MdToolbarModule
   ],
   exports: [
     CdkTableModule,
@@ -33,9 +37,11 @@ import {
     MdDialogModule,
     MdIconModule,
     MdInputModule,
+    MdMenuModule,
     MdPaginatorModule,
     MdSnackBarModule,
-    MdTableModule
+    MdTableModule,
+    MdToolbarModule
   ],
   declarations: []
 })

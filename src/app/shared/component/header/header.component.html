@@ -1,0 +1,26 @@
+<header>
+  <md-toolbar>
+    <div class="header-container">
+      <div class="title">
+        <a routerLink="/" md-button><span>Automatic</span><span>Webinar</span></a>
+      </div>
+
+      <!-- TODO ログイン前 -->
+      <div class="menu">
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+        <md-menu #menu="mdMenu">
+          <button md-menu-item>
+            <md-icon>account_circle</md-icon>
+            <span>アカウント変更</span>
+          </button>
+          <button md-menu-item>
+            <md-icon>exit_to_app</md-icon>
+            <span>ログアウト</span>
+          </button>
+        </md-menu>
+      </div>
+    </div>
+  </md-toolbar>
+</header>
