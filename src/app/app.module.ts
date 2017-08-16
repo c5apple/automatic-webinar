@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MyMaterialModule } from 'shared/module';
-import { HeaderModule } from 'shared/component';
+import { HeaderModule, FooterModule } from 'shared/component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { HeaderModule } from 'shared/component';
     HttpModule,
     AppRoutingModule,
     MyMaterialModule,
-    HeaderModule
+    HeaderModule,
+    FooterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
