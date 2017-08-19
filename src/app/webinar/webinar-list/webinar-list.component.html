@@ -3,7 +3,7 @@
     <md-input-container floatPlaceholder="never">
       <input mdInput #filter placeholder="検索">
     </md-input-container>
-    <button md-icon-button><md-icon>add</md-icon></button>
+    <button md-icon-button (click)="add()"><md-icon>add</md-icon></button>
     <button md-icon-button (click)="delete()"><md-icon>delete</md-icon></button>
     <button md-icon-button (click)="downloadCsv()"><md-icon>file_download</md-icon></button>
   </div>
@@ -29,6 +29,14 @@
     <ng-container cdkColumnDef="name">
       <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
       <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container cdkColumnDef="edit">
+      <md-header-cell *cdkHeaderCellDef> &nbsp; </md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <button md-icon-button (click)="add(row.id)"><md-icon>edit</md-icon></button>
+      </md-cell>
     </ng-container>
 
     <!-- Header -->

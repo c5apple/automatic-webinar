@@ -12,6 +12,7 @@ import { MyDatabase, MyDataSource } from 'shared/model';
 import { WebinarService } from 'shared/service';
 import { Webinar } from 'shared/interface';
 import { ConfirmDialogComponent } from 'shared/component';
+import { WebinarInputComponent } from '../webinar-input/webinar-input.component';
 
 /**
  * ウェビナー一覧
@@ -22,7 +23,7 @@ import { ConfirmDialogComponent } from 'shared/component';
   styleUrls: ['./webinar-list.component.scss']
 })
 export class WebinarListComponent implements OnInit {
-  displayedColumns = ['checked', 'id', 'name'];
+  displayedColumns = ['checked', 'id', 'name', 'edit'];
   database: MyDatabase<Webinar>;
   dataSource: MyDataSource<Webinar> | null;
 
@@ -41,7 +42,6 @@ export class WebinarListComponent implements OnInit {
   ngOnInit() {
     // ウェビナーを検索する
     this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
-      console.log(webinars);
       if ('length' in webinars && 0 < webinars.length) {
         this.database = new MyDatabase<Webinar>(webinars);
         this.dataSource = new MyDataSource<Webinar>(this.database, this.paginator);
@@ -67,6 +67,34 @@ export class WebinarListComponent implements OnInit {
   }
 
   /**
+   * ウェビナーを登録する
+   */
+  add(webinarId?: number) {
+    const config = {
+      width: '95%',
+      height: '90%'
+    };
+    // ウェビナー登録ダイアログを表示
+    const inputDialogRef: MdDialogRef<WebinarInputComponent> = this.dialog.open(WebinarInputComponent, config);
+    inputDialogRef.componentInstance.webinarId = webinarId;
+    inputDialogRef.afterClosed().subscribe((webinar: Webinar) => {
+      if (!webinar) {
+        return;
+      }
+
+      const message = webinarId ? 'ウェビナーの更新が完了しました' : 'ウェビナーの登録が完了しました';
+      this.snackBar.open(message, undefined, { duration: 4000 });
+
+      // 一覧更新
+      if (webinarId) {
+        this.database.data.find(w => w.id === webinarId).name = webinar.name;
+      } else {
+        this.database.add(webinar);
+      }
+    })
+  }
+
+  /**
    * ウェビナーを削除する
    */
   delete() {
@@ -89,7 +117,7 @@ export class WebinarListComponent implements OnInit {
           // リストから削除
           this.database.data = this.database.data.filter(w => webinarIds.indexOf(w.id) === -1);
 
-          const snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open('削除しました', '元に戻す', { duration: 3000 });
+          const snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open('削除しました', '元に戻す', { duration: 4000 });
           snackBarRef.onAction().subscribe(() => {
             // TODO リストアAPI
           });

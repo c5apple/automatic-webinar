@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { WebinarService } from './webinar.service';
 import { Webinar } from 'shared/interface';
+import { WebinarInputForm } from '../../../webinar/webinar-input/webinar-input-form';
 
 /**
  * ウェビナーサービス
@@ -18,9 +19,18 @@ export class WebinarMockService extends WebinarService {
   public getWebinar(webinarId?: number): Observable<Webinar | Webinar[]> {
     const webinars = this.createWebinars();
     if (webinarId) {
-      return Observable.of(webinars.filter(webinar => webinar.id === webinarId));
+      return Observable.of(webinars.find(webinar => webinar.id === webinarId));
     }
     return Observable.of(webinars);
+  }
+
+  /**
+   * ウェビナーを登録/更新する
+   */
+  public saveWebinar(webinar: WebinarInputForm): Observable<any> {
+    const webinarId = 2;
+    return Observable.of(webinarId);
+    // return Observable.of(false);
   }
 
   /**
