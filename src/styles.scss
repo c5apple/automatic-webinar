@@ -9,3 +9,7 @@ body {
   margin: 0;
   overflow-y: scroll;
 }
+
+md-dialog-container.mat-dialog-container {
+  max-width: 100%;
+}

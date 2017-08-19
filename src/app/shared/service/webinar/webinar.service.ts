@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Response, Http, Headers, URLSearchParams } from '@angular/http';
 
 import { ApiService } from '../api.service';
 import { Webinar } from 'shared/interface';
+import { WebinarInputForm } from '../../../webinar/webinar-input/webinar-input-form';
 
 /**
  * ウェビナーサービス
@@ -22,6 +24,21 @@ export class WebinarService extends ApiService {
       url += `?${params.toString()}`;
     }
     return super.getObservable(this.http.get(url)).map(data => data as Webinar | Webinar[]);
+  }
+
+  /**
+   * ウェビナーを登録/更新する
+   */
+  public saveWebinar(webinar: WebinarInputForm): Observable<any> {
+    const header = new Headers();
+    header.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const url = `/api/webinar`;
+    const params = new URLSearchParams();
+    params.set('id', webinar.id ? webinar.id.toString() : '');
+    params.set('name', webinar.name.toString());
+
+    return super.getObservable(this.http.post(url, params.toString(), { 'headers': header }));
   }
 
   /**

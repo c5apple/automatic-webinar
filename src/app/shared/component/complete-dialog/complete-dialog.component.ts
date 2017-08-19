@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
  * 確認ダイアログ
  */
 @Component({
-  selector: 'app-confirm-dialog',
-  templateUrl: './confirm-dialog.component.html',
-  styleUrls: ['./confirm-dialog.component.scss']
+  selector: 'app-complete-dialog',
+  templateUrl: './complete-dialog.component.html',
+  styleUrls: ['./complete-dialog.component.scss']
 })
-export class ConfirmDialogComponent implements OnInit {
+export class CompleteDialogComponent implements OnInit {
 
   /** タイトル */
   title: string;
@@ -19,4 +19,5 @@ export class ConfirmDialogComponent implements OnInit {
 
   ngOnInit() {
   }
+
 }
