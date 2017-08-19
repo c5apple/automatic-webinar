@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { WebinarService } from './webinar.service';
 import { Webinar } from 'shared/interface';
-import { WebinarInputForm } from '../../../webinar/webinar-input/webinar-input-form';
+import { WebinarInputForm } from '../../../admin/webinar/webinar-input/webinar-input-form';
 
 /**
  * ウェビナーサービス

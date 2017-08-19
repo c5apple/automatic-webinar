@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', component: AppComponent },  // TODO LoginComponentに差し替え
   // { path: 'login', component: LoginComponent },
   // { path: 'logout', component: LogoutComponent },
-  { path: 'webinar', loadChildren: './webinar/webinar.module#WebinarModule' },  // TODO guard
+  { path: 'a', loadChildren: './admin/admin.module#AdminModule' },  // TODO guard
   // { path: '**', component: PageNotFoundComponent, pathMatch: 'full' }
 ];
 

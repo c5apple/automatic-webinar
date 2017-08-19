@@ -4,7 +4,7 @@ import { Response, Http, Headers, URLSearchParams } from '@angular/http';
 
 import { ApiService } from '../api.service';
 import { Webinar } from 'shared/interface';
-import { WebinarInputForm } from '../../../webinar/webinar-input/webinar-input-form';
+import { WebinarInputForm } from '../../../admin/webinar/webinar-input/webinar-input-form';
 
 /**
  * ウェビナーサービス
