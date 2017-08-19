@@ -377,15 +377,13 @@ class dao {
    * 削除フラグを立てる
    */
   function deleteFlg($array_where = array()) {
-    $now = time();
-
     // SQL文生成
     $sql = $this->base_sql_update;
     $sql .= $this->createSet(
             array(
                 'delete_flg' => 1,
 //                'update_user' => Me::getInstance()->{'id'}, // TODO ログインユーザ
-                'update_day' => StringUtil::toDatabaseDate($now),
+                'update_day' => StringUtil::toDatabaseDate(),
             )
     );
     $sql .= $this->createWhere($array_where);
@@ -517,12 +515,11 @@ class dao {
    * 作成日時を生成する
    */
   function createDay() {
-    $me  = Me::getInstance();
-    $now = time();
+//    $me      = Me::getInstance(); // TODO ログインユーザ
+//    $user_id = $me->isUser() ? $me->{'id'} : 0;
+    $user_id = 0;
 
-    $user_id = $me->isUser() ? $me->{'id'} : 0;
-
-    $ret = ' , create_day=' . Common::toDatabaseDate($now);
+    $ret = ' , create_day=' . StringUtil::toDatabaseDate();
     $ret .= ' , create_user=' . $user_id;
 
     return $ret;
@@ -532,12 +529,11 @@ class dao {
    * 更新日時を生成する
    */
   function updateDay() {
-    $me  = Me::getInstance();
-    $now = time();
+//    $me      = Me::getInstance(); // TODO ログインユーザ
+//    $user_id = $me->isUser() ? $me->{'id'} : 0;
+    $user_id = 0;
 
-    $user_id = $me->isUser() ? $me->{'id'} : 0;
-
-    $ret = ' , update_day= ' . Common::toDatabaseDate($now);
+    $ret = ' , update_day= ' . StringUtil::toDatabaseDate();
     $ret .= ' , update_user= ' . $user_id;
 
 

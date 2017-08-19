@@ -32,7 +32,10 @@ class StringUtil {
    * @param $timestamp タイムスタンプ
    * @return string 'Y-m-d H:i:s'
    */
-  static public function toDatabaseDate($timestamp) {
+  static public function toDatabaseDate($timestamp = NULL) {
+    if (is_null($timestamp)) {
+      $timestamp = time();
+    }
     return self::toStr(date('Y-m-d H:i:s', $timestamp));
   }
 

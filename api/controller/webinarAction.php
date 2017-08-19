@@ -65,7 +65,44 @@ class webinarAction extends Action {
    * ウェビナー登録
    */
   private function saveWebinar() {
+    // ウェビナーID
+    $webinar_id   = isset($_POST['id']) ? $_POST['id'] : NULL;
+    $webinar_name = isset($_POST['name']) ? $_POST['name'] : NULL;
+    $webinar      = array();
 
+    if (!$webinar_name) {
+      return parent::badRequest();
+    }
+
+    if ($webinar_id && is_numeric($webinar_id)) {
+      $set   = array(
+          'name' => '\'' . $webinar_name . '\''
+      );
+      $where = array(
+          'id' => '\'' . $webinar_id . '\''
+      );
+
+      // 更新
+      $ret = $this->webinar->update($set, $where);
+    } else {
+      $value = array(
+          'id'   => 'NULL',
+          'name' => '\'' . $webinar_name . '\''
+      );
+
+      // 登録
+      $ret = $this->webinar->insert($value);
+      if ($ret) {
+        $webinar_id = $this->webinar->getQuery()->getLastInsertId();
+      }
+    }
+
+    if ($ret) {
+      echo json_encode($webinar_id);
+    } else {
+      // TODO 500 error
+      return parent::InternalServerError();
+    }
   }
 
   /**
