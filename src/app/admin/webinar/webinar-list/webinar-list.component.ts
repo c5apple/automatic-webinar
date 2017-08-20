@@ -107,6 +107,7 @@ export class WebinarListComponent implements OnInit {
     const dialogRef: MdDialogRef<ConfirmDialogComponent> = this.dialog.open(ConfirmDialogComponent);
     dialogRef.componentInstance.title = `${webinarIds.length}件 削除します`;
     dialogRef.componentInstance.message = 'よろしいですか？';
+    dialogRef.componentInstance.color = 'warn';
     dialogRef.afterClosed().subscribe((isOk: boolean) => {
       if (!isOk) {
         return;
