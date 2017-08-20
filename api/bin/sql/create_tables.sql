@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'アカウントID',
-  `login_id` varchar(32) NOT NULL COMMENT 'アカウントID',
+  `login_id` varchar(32) NOT NULL COMMENT 'ログインID',
   `pass` varchar(255) NOT NULL COMMENT 'パスワード',
   `name` varchar(32) COMMENT 'アカウント名',
   `delete_flg` tinyint(1) DEFAULT '0' COMMENT '削除フラグ',
