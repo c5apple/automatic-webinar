@@ -15,6 +15,9 @@ export class ConfirmDialogComponent implements OnInit {
   /** メッセージ */
   message: string;
 
+  /** ボタン色 */
+  color: string;
+
   constructor() { }
 
   ngOnInit() {
