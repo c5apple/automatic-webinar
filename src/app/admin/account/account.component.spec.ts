@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccountComponent } from './account.component';
+import { MyMaterialModule } from 'shared/module';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
@@ -8,9 +10,14 @@ describe('AccountComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountComponent ]
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MyMaterialModule
+      ],
+      declarations: [AccountComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
