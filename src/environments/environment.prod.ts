@@ -1,6 +1,10 @@
-import { WebinarService } from 'shared/service';
+import {
+  WebinarService,
+  AccountService
+} from 'shared/service';
 
 export const environment = {
   production: true,
-  webinarService: WebinarService
+  webinarService: WebinarService,
+  accountService: AccountService
 };

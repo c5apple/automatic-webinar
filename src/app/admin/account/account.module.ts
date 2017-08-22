@@ -17,7 +17,7 @@ import { MyMaterialModule } from 'shared/module';
     AccountComponent
   ],
   providers: [
-    environment.webinarService
+    environment.accountService
   ]
 })
 export class AccountModule { }
