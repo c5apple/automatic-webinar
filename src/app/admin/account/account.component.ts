@@ -45,7 +45,7 @@ export class AccountComponent implements OnInit {
       this.account = account;
       Object.entries(account).forEach(w => {
         this.form.controls[w[0]].setValue(w[1]);
-      });;
+      });
     });
     // TODO 取得できない場合エラー
   }

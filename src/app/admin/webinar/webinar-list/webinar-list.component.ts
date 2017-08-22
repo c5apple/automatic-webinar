@@ -91,7 +91,7 @@ export class WebinarListComponent implements OnInit {
       } else {
         this.database.add(webinar);
       }
-    })
+    });
   }
 
   /**
