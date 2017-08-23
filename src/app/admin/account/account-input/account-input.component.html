@@ -16,20 +16,6 @@
     <md-error *ngIf="form.controls['name'].hasError('maxlength')">32文字以内で入力してください</md-error>
   </md-input-container>
 
-  <!-- Password Column -->
-  <md-input-container>
-    <input mdInput type="password" formControlName="pass" placeholder="パスワード" maxlength="60">
-    <md-error *ngIf="form.controls['pass'].hasError('required')">入力してください</md-error>
-    <md-error *ngIf="form.controls['pass'].hasError('maxlength')">60文字以内で入力してください</md-error>
-  </md-input-container>
-
-  <!-- Password (Confirm) Column -->
-  <md-input-container>
-    <input mdInput type="password" formControlName="passConfirm" placeholder="パスワード確認" maxlength="60">
-    <md-error *ngIf="form.controls['passConfirm'].hasError('required')">入力してください</md-error>
-    <md-error *ngIf="form.controls['passConfirm'].hasError('maxlength')">60文字以内で入力してください</md-error>
-  </md-input-container>
-
   <md-error *ngIf="isError">問題が発生しています<br>システム管理者に報告してください</md-error>
 
   <button md-raised-button [color]="'primary'">更新</button>

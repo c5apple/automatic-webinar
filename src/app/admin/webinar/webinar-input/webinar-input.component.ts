@@ -58,7 +58,7 @@ export class WebinarInputComponent implements OnInit {
     this.webinarService.getWebinar(webinarId).subscribe((webinar: Webinar) => {
       Object.entries(webinar).forEach(w => {
         this.form.controls[w[0]].setValue(w[1]);
-      });;
+      });
     });
   }
 
@@ -78,7 +78,7 @@ export class WebinarInputComponent implements OnInit {
     this.webinarService.saveWebinar(form).subscribe(webinarId => {
       if (webinarId && !isNaN(+webinarId)) {
         // 登録完了
-        form.id = webinarId
+        form.id = webinarId;
         this.dialogRef.close(form);
       } else {
         this.isError = true;

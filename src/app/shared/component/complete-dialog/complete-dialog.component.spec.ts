@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CompleteDialogComponent } from './complete-dialog.component';
+import { MyMaterialModule } from 'shared/module';
 
 describe('CompleteDialogComponent', () => {
   let component: CompleteDialogComponent;
@@ -8,9 +9,12 @@ describe('CompleteDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompleteDialogComponent ]
+      imports: [
+        MyMaterialModule
+      ],
+      declarations: [CompleteDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

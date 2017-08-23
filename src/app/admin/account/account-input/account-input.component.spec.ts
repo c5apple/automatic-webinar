@@ -1,29 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
 
-import { WebinarInputComponent } from './webinar-input.component';
+import { AccountInputComponent } from './account-input.component';
 import { MyMaterialModule } from 'shared/module';
 
-describe('WebinarInputComponent', () => {
-  let component: WebinarInputComponent;
-  let fixture: ComponentFixture<WebinarInputComponent>;
+describe('AccountInputComponent', () => {
+  let component: AccountInputComponent;
+  let fixture: ComponentFixture<AccountInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        RouterTestingModule,
         MyMaterialModule
       ],
-      declarations: [WebinarInputComponent]
+      declarations: [AccountInputComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebinarInputComponent);
+    fixture = TestBed.createComponent(AccountInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
