@@ -3,7 +3,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { AccountService } from './account.service';
 import { Account } from 'shared/interface';
-import { AccountForm } from '../../../admin/account/account-form';
+import { AccountInputForm } from '../../../admin/account/account-input/account-input-form';
+import { AccountPasswordForm } from '../../../admin/account/account-password/account-password-form';
 
 /**
  * アカウントサービス
@@ -27,7 +28,15 @@ export class AccountMockService extends AccountService {
    * アカウントを更新する
    * @param account アカウント情報
    */
-  public saveAccount(account: AccountForm): Observable<any> {
+  public saveAccount(account: AccountInputForm): Observable<any> {
+    return Observable.of(true);
+  }
+
+  /**
+   * パスワードを更新する
+   * @param account アカウント情報
+   */
+  public updatePassword(account: AccountPasswordForm): Observable<any> {
     return Observable.of(true);
   }
 }

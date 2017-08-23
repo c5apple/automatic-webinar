@@ -3,21 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from 'env/environment';
+import { AccountPasswordComponent } from './account-password.component';
 import { MyMaterialModule } from 'shared/module';
-import { AccountInputModule } from './account-input/account-input.module';
-import { AccountPasswordModule } from './account-password/account-password.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MyMaterialModule,
-    AccountInputModule,
-    AccountPasswordModule
+    MyMaterialModule
+  ],
+  declarations: [
+    AccountPasswordComponent
   ],
   providers: [
     environment.accountService
   ]
 })
-export class AccountModule { }
+export class AccountPasswordModule { }

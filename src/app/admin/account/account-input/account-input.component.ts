@@ -3,18 +3,18 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
 
 import { Account } from 'shared/interface';
-import { AccountForm } from './account-form';
+import { AccountInputForm } from './account-input-form';
 import { AccountService } from 'shared/service';
 
 /**
  * アカウント変更
  */
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  selector: 'app-account-input',
+  templateUrl: './account-input.component.html',
+  styleUrls: ['./account-input.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class AccountInputComponent implements OnInit {
 
   /** アカウント情報 */
   account: Account;
@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
     private snackBar: MdSnackBar,
     private accountService: AccountService
   ) {
-    this.form = this.formBuilder.group(AccountForm.validators);
+    this.form = this.formBuilder.group(AccountInputForm.validators);
   }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class AccountComponent implements OnInit {
   getAccount() {
     this.accountService.getAccount().subscribe((account: Account) => {
       this.account = account;
-      Object.entries(account).forEach(w => {
+      Object.entries(account).filter(w => this.form.controls[w[0]]).forEach(w => {
         this.form.controls[w[0]].setValue(w[1]);
       });
     });
@@ -55,7 +55,7 @@ export class AccountComponent implements OnInit {
    * @param form 入力フォーム
    * @param isValid 有効か
    */
-  onSubmit(form: AccountForm, isValid: boolean) {
+  onSubmit(form: AccountInputForm, isValid: boolean) {
     if (!isValid) {
       return;
     }

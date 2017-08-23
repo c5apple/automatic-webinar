@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
-import { AccountComponent } from './account/account.component';
+import { AccountInputComponent } from './account/account-input/account-input.component';
+import { AccountPasswordComponent } from './account/account-password/account-password.component';
 import { WebinarListComponent } from './webinar/webinar-list/webinar-list.component';
 
 const routes: Routes = [
   {
     path: '', component: AdminComponent,
     children: [
-      { path: 'account', component: AccountComponent },
+      { path: 'account', component: AccountInputComponent },
+      { path: 'password', component: AccountPasswordComponent },
       { path: 'webinar/list', component: WebinarListComponent },
     ]
   }

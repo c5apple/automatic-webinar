@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AccountComponent } from './account.component';
+import { AccountInputComponent } from './account-input.component';
 import { MyMaterialModule } from 'shared/module';
 
-describe('AccountComponent', () => {
-  let component: AccountComponent;
-  let fixture: ComponentFixture<AccountComponent>;
+describe('AccountInputComponent', () => {
+  let component: AccountInputComponent;
+  let fixture: ComponentFixture<AccountInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,13 +15,13 @@ describe('AccountComponent', () => {
         ReactiveFormsModule,
         MyMaterialModule
       ],
-      declarations: [AccountComponent]
+      declarations: [AccountInputComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountComponent);
+    fixture = TestBed.createComponent(AccountInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
