@@ -1,13 +1,15 @@
 <?php
 
-require_once('./model/account.php');
+require_once('./model/dao/account.php');
+require_once('./model/dao/session.php');
 
 /**
  * ログインAPI
  */
 class loginAction extends Action {
 
-  private $account;
+  protected $account;
+  protected $session;
 
   /**
    * コンストラクタ
@@ -16,6 +18,7 @@ class loginAction extends Action {
     parent::__construct();
 
     $this->account = new Account();
+    $this->session = new Session();
   }
 
   /**
@@ -34,21 +37,51 @@ class loginAction extends Action {
 
     // アカウント検索
     $account = $this->account->select(array(
-        'login_id' => '\'' . $login_id . '\''
+        'login_id' => StringUtil::toStr($login_id)
     ));
     if ($account) {
       $account = array_shift($account);
 
-//      $hash = password_hash($pass, PASSWORD_BCRYPT); // PHP7.0.0ではオプション非推奨
       $hash = $account['pass'];
 
-      $ret = password_verify($pass, $hash);
+      $ret = Cipher::verify($pass, $hash);
+    }
+    if ($ret) {
+      // ログイン成功したので認証情報を設定する
+      $ret = $this->saveSession($account['id'], $pass);
     }
     if ($ret) {
       echo json_encode($ret);
       return;
     }
     return parent::Forbidden();
+  }
+
+  /**
+   * 認証情報を保持
+   *
+   * @param $account_id アカウントID
+   * @param $pass パスワード(暗号化前)
+   * @param boolean 処理結果
+   */
+  private function saveSession($account_id, $pass) {
+    // 有効期限(2時間)
+    $limit_day = time() + 60 * 60 * 2;
+
+    // クッキー
+    $session_id = Cipher::encrypt('w' . $pass);
+    setcookie(parent::COOKIE_ID, $session_id, $limit_day);
+
+    // セッションテーブル
+    $ret = $this->session->insert(array(
+        'id'         => StringUtil::toStr($session_id),
+        'account_id' => $account_id,
+        'limit_day'  => StringUtil::toDatabaseDate($limit_day),
+    ));
+    if (!$ret) {
+      $this->InternalServerError();
+    }
+    return $ret;
   }
 
 }

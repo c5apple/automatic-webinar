@@ -14,6 +14,21 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='アカウント'
 ;
 
+DROP TABLE IF EXISTS `session`;
+CREATE TABLE `session` (
+  `id` varchar(255) NOT NULL COMMENT 'セッションID',
+  `account_id` int(11) NOT NULL COMMENT 'アカウントID',
+  `limit_day` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '有効期限',
+  `delete_flg` tinyint(1) DEFAULT '0' COMMENT '削除フラグ',
+  `create_day` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '作成日付',
+  `create_user` int(11) NOT NULL COMMENT '作成ユーザ',
+  `update_day` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新日付',
+  `update_user` int(11) NOT NULL COMMENT '更新ユーザ',
+  PRIMARY KEY (`id`),
+  KEY `limit_day` (`limit_day`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='セッション'
+;
+
 DROP TABLE IF EXISTS `webinar`;
 CREATE TABLE `webinar` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ウェビナーID',

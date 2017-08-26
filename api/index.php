@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Asia/Tokyo');
+
 try {
   header('Access-Control-Allow-Origin: *');
   header('content-type: application/json; charset=utf-8');
@@ -8,6 +10,7 @@ try {
 
   define('BASE_DIR', '/automatic-webinar/api/');
 
+  require_once('./service/cipher.php');
   require_once('./service/filer.php');
   require_once('./service/logger.php');
   require_once('./service/stringUtil.php');

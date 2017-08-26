@@ -1,6 +1,6 @@
 <?php
 
-require_once('./model/webinar.php');
+require_once('./model/dao/webinar.php');
 
 /**
  * ウェビナーAPI
