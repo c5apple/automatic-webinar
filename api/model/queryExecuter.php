@@ -533,8 +533,8 @@ class dao {
 //    $user_id = $me->isUser() ? $me->{'id'} : 0;
     $user_id = 0;
 
-    $ret = ' , update_day= ' . StringUtil::toDatabaseDate();
-    $ret .= ' , update_user= ' . $user_id;
+    $ret = ' , update_day=' . StringUtil::toDatabaseDate();
+    $ret .= ' , update_user=' . $user_id;
 
 
     return $ret;

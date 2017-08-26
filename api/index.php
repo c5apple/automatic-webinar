@@ -8,6 +8,7 @@ try {
 
   define('BASE_DIR', '/automatic-webinar/api/');
 
+  require_once('./service/cipher.php');
   require_once('./service/filer.php');
   require_once('./service/logger.php');
   require_once('./service/stringUtil.php');
