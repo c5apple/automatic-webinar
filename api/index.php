@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Asia/Tokyo');
+
 try {
   header('Access-Control-Allow-Origin: *');
   header('content-type: application/json; charset=utf-8');
