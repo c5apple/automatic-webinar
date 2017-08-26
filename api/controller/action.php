@@ -1,6 +1,6 @@
 <?php
 
-require_once('./model/session.php');
+require_once('./model/dao/session.php');
 
 /**
  * アクション基底クラス
