@@ -381,9 +381,9 @@ class dao {
     $sql = $this->base_sql_update;
     $sql .= $this->createSet(
             array(
-                'delete_flg' => 1,
-//                'update_user' => Me::getInstance()->{'id'}, // TODO ログインユーザ
-                'update_day' => StringUtil::toDatabaseDate(),
+                'delete_flg'  => 1,
+                'update_user' => Me::getInstance()->{'id'},
+                'update_day'  => StringUtil::toDatabaseDate(),
             )
     );
     $sql .= $this->createWhere($array_where);
@@ -515,9 +515,8 @@ class dao {
    * 作成日時を生成する
    */
   function createDay() {
-//    $me      = Me::getInstance(); // TODO ログインユーザ
-//    $user_id = $me->isUser() ? $me->{'id'} : 0;
-    $user_id = 0;
+    $me      = Me::getInstance();
+    $user_id = $me->isUser() ? $me->{'id'} : 0;
 
     $ret = ' , create_day=' . StringUtil::toDatabaseDate();
     $ret .= ' , create_user=' . $user_id;
@@ -529,9 +528,8 @@ class dao {
    * 更新日時を生成する
    */
   function updateDay() {
-//    $me      = Me::getInstance(); // TODO ログインユーザ
-//    $user_id = $me->isUser() ? $me->{'id'} : 0;
-    $user_id = 0;
+    $me      = Me::getInstance();
+    $user_id = $me->isUser() ? $me->{'id'} : 0;
 
     $ret = ' , update_day=' . StringUtil::toDatabaseDate();
     $ret .= ' , update_user=' . $user_id;

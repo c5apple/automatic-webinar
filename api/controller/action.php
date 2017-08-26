@@ -1,6 +1,7 @@
 <?php
 
 require_once('./model/dao/session.php');
+require_once('./model/me.php');
 
 /**
  * アクション基底クラス
@@ -36,6 +37,10 @@ abstract class Action {
 
       // 有効期限を切れていないか
       if ($session && time() < strtotime($session[0]['limit_day'])) {
+        $me = array(
+            'id' => $session[0]['account_id']
+        );
+        Me::getInstance()->set($me);
         return true;
       }
     }
