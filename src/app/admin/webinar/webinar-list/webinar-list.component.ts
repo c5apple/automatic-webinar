@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MdPaginator, MdDialog, MdDialogRef, MdSnackBar, MdSnackBarRef, SimpleSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -36,6 +37,7 @@ export class WebinarListComponent implements OnInit {
   constructor(
     private dialog: MdDialog,
     private snackBar: MdSnackBar,
+    private router: Router,
     private webinarService: WebinarService
   ) { }
 
@@ -54,6 +56,8 @@ export class WebinarListComponent implements OnInit {
             this.dataSource.filter = this.filter.nativeElement.value;
           });
       }
+    }, (error) => {
+      this.router.navigate(['/']);
     });
   }
 
