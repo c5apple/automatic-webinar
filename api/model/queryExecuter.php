@@ -54,7 +54,7 @@ class QueryExecuter {
   public static function connect() {
     $flg = false;
 
-    if (!self::$link = mysql_connect(self::$DB_SERVER, self::$DB_USER, self::$DB_PASS)) {
+    if (!self::$link = @mysql_connect(self::$DB_SERVER, self::$DB_USER, self::$DB_PASS)) {
       // DBサーバ接続失敗
       $flg = true;
     } else if (!mysql_select_db(self::$DB_NAME, self::$link)) {

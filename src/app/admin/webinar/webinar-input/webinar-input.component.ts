@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MdDialogRef } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { WebinarInputForm } from './webinar-input-form';
 import { WebinarService } from 'shared/service';
@@ -28,6 +28,7 @@ export class WebinarInputComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private dialogRef: MdDialogRef<WebinarInputComponent>,
     private formBuilder: FormBuilder,
     private webinarService: WebinarService,
@@ -59,6 +60,9 @@ export class WebinarInputComponent implements OnInit {
       Object.entries(webinar).forEach(w => {
         this.form.controls[w[0]].setValue(w[1]);
       });
+    }, (error) => {
+      this.dialogRef.close();
+      this.router.navigate(['/']);
     });
   }
 
@@ -83,6 +87,9 @@ export class WebinarInputComponent implements OnInit {
       } else {
         this.isError = true;
       }
+    }, (error) => {
+      this.dialogRef.close();
+      this.router.navigate(['/']);
     });
   }
 }
