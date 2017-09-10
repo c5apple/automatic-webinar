@@ -15,6 +15,8 @@ import { Webinar } from 'shared/interface';
 import { ConfirmDialogComponent } from 'shared/component';
 import { WebinarInputComponent } from '../webinar-input/webinar-input.component';
 
+declare var Encoding;
+
 /**
  * ウェビナー一覧
  */
@@ -142,7 +144,7 @@ export class WebinarListComponent implements OnInit {
     const body = this.database.data.map((webinar, index) => Object.values(webinar).join(','));
     const data = Array.prototype.concat(header, body).join('\r\n');
 
-    const blob = new Blob([data], { type: 'text/csv' });
+    const blob = new Blob([this.encode(data)], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
 
     if (navigator.msSaveOrOpenBlob) {
@@ -158,4 +160,15 @@ export class WebinarListComponent implements OnInit {
     window.URL.revokeObjectURL(url);
   }
 
+  /**
+   * UTF-8 -> SJIS
+   * @param str
+   */
+  private encode(str: string) {
+    // encoding.js
+    var str_array = Encoding.stringToCode(str);
+    var sjis_array = Encoding.convert(str_array, "SJIS", "UNICODE");
+    var uint8_array = new Uint8Array(sjis_array);
+    return uint8_array;
+  };
 }
