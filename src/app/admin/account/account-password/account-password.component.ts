@@ -4,7 +4,7 @@ import { MdSnackBar } from '@angular/material';
 
 import { Account } from 'shared/interface';
 import { AccountPasswordForm } from './account-password-form';
-import { AccountService } from 'shared/service';
+import { AccountService, LoadingService } from 'shared/service';
 
 /**
  * パスワード変更
@@ -28,6 +28,7 @@ export class AccountPasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private snackBar: MdSnackBar,
+    private loading: LoadingService,
     private accountService: AccountService
   ) {
     this.form = this.formBuilder.group(AccountPasswordForm.validators);
@@ -41,7 +42,10 @@ export class AccountPasswordComponent implements OnInit {
    * アカウントを取得する
    */
   getAccount() {
+    this.loading.setLoading(true);
     this.accountService.getAccount().subscribe((account: Account) => {
+      this.loading.setLoading(false);
+
       this.account = account;
     });
     // TODO 取得できない場合エラー
@@ -57,10 +61,12 @@ export class AccountPasswordComponent implements OnInit {
       return;
     }
     this.isError = false;
+    this.loading.setLoading(true);
 
     // パスワード更新
     form.id = this.account.id;
     this.accountService.updatePassword(form).subscribe(ret => {
+      this.loading.setLoading(false);
       if (ret) {
         // 更新完了
         const message = 'パスワードの更新が完了しました';

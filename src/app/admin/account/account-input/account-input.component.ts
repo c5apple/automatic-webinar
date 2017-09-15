@@ -4,7 +4,7 @@ import { MdSnackBar } from '@angular/material';
 
 import { Account } from 'shared/interface';
 import { AccountInputForm } from './account-input-form';
-import { AccountService } from 'shared/service';
+import { AccountService, LoadingService } from 'shared/service';
 
 /**
  * アカウント変更
@@ -28,6 +28,7 @@ export class AccountInputComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private snackBar: MdSnackBar,
+    private loading: LoadingService,
     private accountService: AccountService
   ) {
     this.form = this.formBuilder.group(AccountInputForm.validators);
@@ -41,7 +42,10 @@ export class AccountInputComponent implements OnInit {
    * アカウントを取得する
    */
   getAccount() {
+    this.loading.setLoading(true);
     this.accountService.getAccount().subscribe((account: Account) => {
+      this.loading.setLoading(false);
+
       this.account = account;
       Object.entries(account).filter(w => this.form.controls[w[0]]).forEach(w => {
         this.form.controls[w[0]].setValue(w[1]);
@@ -60,12 +64,12 @@ export class AccountInputComponent implements OnInit {
       return;
     }
     this.isError = false;
-
-    console.log(form);
+    this.loading.setLoading(true);
 
     // アカウント更新
     form.id = this.account.id;
     this.accountService.saveAccount(form).subscribe(ret => {
+      this.loading.setLoading(false);
       if (ret) {
         // 更新完了
         const message = 'アカウントの更新が完了しました';

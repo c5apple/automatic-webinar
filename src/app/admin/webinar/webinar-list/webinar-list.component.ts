@@ -10,7 +10,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
 import { MyDatabase, MyDataSource } from 'shared/model';
-import { WebinarService } from 'shared/service';
+import { WebinarService, LoadingService } from 'shared/service';
 import { Webinar } from 'shared/interface';
 import { ConfirmDialogComponent } from 'shared/component';
 import { WebinarInputComponent } from '../webinar-input/webinar-input.component';
@@ -40,12 +40,16 @@ export class WebinarListComponent implements OnInit {
     private dialog: MdDialog,
     private snackBar: MdSnackBar,
     private router: Router,
+    private loading: LoadingService,
     private webinarService: WebinarService
   ) { }
 
   ngOnInit() {
     // ウェビナーを検索する
+    this.loading.setLoading(true);
     this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
+      this.loading.setLoading(false);
+
       if ('length' in webinars && 0 < webinars.length) {
         this.database = new MyDatabase<Webinar>(webinars);
         this.dataSource = new MyDataSource<Webinar>(this.database, this.paginator);
@@ -59,6 +63,7 @@ export class WebinarListComponent implements OnInit {
           });
       }
     }, (error) => {
+      this.loading.setLoading(false);
       this.router.navigate(['/']);
     });
   }
@@ -119,7 +124,9 @@ export class WebinarListComponent implements OnInit {
         return;
       }
       // ウェビナーを削除する
+      this.loading.setLoading(true);
       this.webinarService.deleteWebinar(webinarIds).subscribe(ret => {
+        this.loading.setLoading(false);
         if (ret) {
           // リストから削除
           this.database.data = this.database.data.filter(w => webinarIds.indexOf(w.id) === -1);
