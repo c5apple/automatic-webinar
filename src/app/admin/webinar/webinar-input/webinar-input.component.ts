@@ -4,7 +4,7 @@ import { MdDialogRef } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { WebinarInputForm } from './webinar-input-form';
-import { WebinarService } from 'shared/service';
+import { WebinarService, LoadingService } from 'shared/service';
 import { Webinar } from 'shared/interface';
 
 /**
@@ -31,6 +31,7 @@ export class WebinarInputComponent implements OnInit {
     private router: Router,
     private dialogRef: MdDialogRef<WebinarInputComponent>,
     private formBuilder: FormBuilder,
+    private loading: LoadingService,
     private webinarService: WebinarService,
   ) {
     this.form = this.formBuilder.group(WebinarInputForm.validators);
@@ -56,11 +57,14 @@ export class WebinarInputComponent implements OnInit {
    * @param webinarId ウェビナーID
    */
   getWebinar(webinarId: number) {
+    this.loading.setLoading(true);
     this.webinarService.getWebinar(webinarId).subscribe((webinar: Webinar) => {
+      this.loading.setLoading(false);
       Object.entries(webinar).forEach(w => {
         this.form.controls[w[0]].setValue(w[1]);
       });
     }, (error) => {
+      this.loading.setLoading(false);
       this.dialogRef.close();
       this.router.navigate(['/']);
     });
@@ -76,10 +80,13 @@ export class WebinarInputComponent implements OnInit {
       return;
     }
     this.isError = false;
+    this.loading.setLoading(true);
 
     // ウェビナー登録
     form.id = this.webinarId;
     this.webinarService.saveWebinar(form).subscribe(webinarId => {
+      this.loading.setLoading(false);
+
       if (webinarId && !isNaN(+webinarId)) {
         // 登録完了
         form.id = webinarId;
@@ -88,6 +95,7 @@ export class WebinarInputComponent implements OnInit {
         this.isError = true;
       }
     }, (error) => {
+      this.loading.setLoading(false);
       this.dialogRef.close();
       this.router.navigate(['/']);
     });

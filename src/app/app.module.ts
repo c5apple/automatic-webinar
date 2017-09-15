@@ -7,7 +7,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MyMaterialModule } from 'shared/module';
-import { HeaderModule, FooterModule } from 'shared/component';
+import { HeaderModule, FooterModule, LoadingModule } from 'shared/component';
+import { LoadingService } from 'shared/service';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HeaderModule, FooterModule } from 'shared/component';
     HttpModule,
     AppRoutingModule,
     MyMaterialModule,
+    LoadingModule,
     HeaderModule,
     FooterModule
   ],
