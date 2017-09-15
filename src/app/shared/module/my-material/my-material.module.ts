@@ -10,6 +10,7 @@ import {
   MdMenuModule,
   MdPaginatorModule,
   MdSnackBarModule,
+  MdProgressSpinnerModule,
   MdTableModule,
   MdToolbarModule
 } from '@angular/material';
@@ -26,6 +27,7 @@ import {
     MdMenuModule,
     MdPaginatorModule,
     MdSnackBarModule,
+    MdProgressSpinnerModule,
     MdTableModule,
     MdToolbarModule
   ],
@@ -40,6 +42,7 @@ import {
     MdMenuModule,
     MdPaginatorModule,
     MdSnackBarModule,
+    MdProgressSpinnerModule,
     MdTableModule,
     MdToolbarModule
   ],
