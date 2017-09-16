@@ -78,4 +78,48 @@ class StringUtil {
     return unserialize(base64_decode($var));
   }
 
+  /**
+   * スネークケースをキャメルケースに変換します
+   */
+  public static function camelize($str) {
+    return str_replace('_', '', lcfirst(ucwords($str, '_')));
+  }
+
+  /**
+   * 連想配列のキーをキャメルケースに変換します
+   */
+  public static function camelizeArrayRecursive(array $arr) {
+    $results = [];
+    foreach ($arr as $key => $value) {
+      if (is_array($value)) {
+        $results[self::camelize($key)] = camelizeArrayRecursive($value);
+      } else {
+        $results[self::camelize($key)] = $value;
+      }
+    }
+    return $results;
+  }
+
+  /**
+   * キャメルケースをスネークケースに変換します
+   */
+  public static function snakize($str) {
+    return strtolower(preg_replace('/[a-z]+(?=[A-Z])|[A-Z]+(?=[A-Z][a-z])/', '\0_', $str));
+  }
+
+  /**
+   * 連想配列のキーをスネークケースに変換します
+   */
+  public static function snakizeArrayRecursive(array $arr) {
+    $results = [];
+    foreach ($arr as $key => $value) {
+      if (is_array($value)) {
+        $results[self::snakize($key)] = snakizeArrayRecursive($value);
+      } else {
+        $results[self::snakize($key)] = $value;
+      }
+    }
+    return $results;
+  }
+
 }
