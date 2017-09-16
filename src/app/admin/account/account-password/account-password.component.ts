@@ -64,7 +64,6 @@ export class AccountPasswordComponent implements OnInit {
     this.loading.setLoading(true);
 
     // パスワード更新
-    form.id = this.account.id;
     this.accountService.updatePassword(form).subscribe(ret => {
       this.loading.setLoading(false);
       if (ret) {
