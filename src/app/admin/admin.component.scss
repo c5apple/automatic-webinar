@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  padding: 0;
+  max-height: 500px;
+  min-width: 300px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.menu-item {
+  display: flex;
+  margin: 16px 8px;
+  flex-grow: 1;
+  text-decoration: none;
+
+  * {
+    width: 100%;
+  }
+}
