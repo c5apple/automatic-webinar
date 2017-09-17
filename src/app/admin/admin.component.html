@@ -1,1 +1,15 @@
+<div class="container" *ngIf="routerUrl === '/a'">
+  <a class="menu-item" routerLink="/a/webinar/list">
+    <md-card>
+      <h3>ウェビナー一覧</h3>
+    </md-card>
+  </a>
+
+  <a class="menu-item" routerLink="/a/opt/list">
+    <md-card>
+      <h3>オプト一覧</h3>
+    </md-card>
+  </a>
+</div>
+
 <router-outlet></router-outlet>

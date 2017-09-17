@@ -5,14 +5,10 @@ import { Validators, ValidationErrors, FormControl } from '@angular/forms';
  * 入力フォーム
  */
 export class AccountPasswordForm {
-  /** ID */
-  id: number;
   /** パスワード */
   pass: string;
 
   static validators = {
-    /** ID */
-    id: [{ value: '', disabled: true }],
     /** パスワード */
     pass: ['', Validators.compose([Validators.required, Validators.maxLength(60)])],
     /** パスワード（確認） */

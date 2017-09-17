@@ -38,7 +38,6 @@ class Logger {
       $msg .= $path;
     } else {
       $bt  = debug_backtrace();
-      var_dump($bt);
       $msg .= $bt[1]['class'] . $bt[1]['type'] . $bt[1]['function'] . ' : ' . $bt[1]['line'];
 //			$msg = $bt[0]['file'] . ' : ' . $bt[1]['class'] . $bt[1]['type'] . $bt[1]['function'] . ' : ' . $bt[1]['line'];
     }

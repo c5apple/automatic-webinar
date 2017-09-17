@@ -90,8 +90,9 @@ class QueryExecuter {
    * クエリーを発行する
    */
   function query($sql) {
-    if (!isset($sql))
+    if (!isset($sql)) {
       return null;
+    }
     return mysql_query($sql, self::$link);
   }
 

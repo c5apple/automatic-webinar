@@ -1,4 +1,4 @@
-<h2>ウェビナー一覧</h2>
+<h2>オプト一覧</h2>
 
 <md-card class="container">
   <div class="header-container">
@@ -27,10 +27,22 @@
       <md-cell *cdkCellDef="let row"> {{row.id}} </md-cell>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+    <!-- WebinarId Column -->
+    <ng-container cdkColumnDef="webinarId">
+      <md-header-cell *cdkHeaderCellDef> ウェビナー </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.webinarId}} </md-cell>
+    </ng-container>
+
+    <!-- Mail Column -->
+    <ng-container cdkColumnDef="mail">
+      <md-header-cell *cdkHeaderCellDef> Mail </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.mail}} </md-cell>
+    </ng-container>
+
+    <!-- PreferredDate Column -->
+    <ng-container cdkColumnDef="preferredDate">
+      <md-header-cell *cdkHeaderCellDef> 希望日 </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.preferredDate | date:'yyyy/MM/dd'}} </md-cell>
     </ng-container>
 
     <!-- Edit Column -->

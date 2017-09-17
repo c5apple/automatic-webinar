@@ -29,7 +29,7 @@ export class MyDataSource<T> extends DataSource<any> {
     return Observable.merge(...displayDataChanges).map(() => {
       // filter
       const data = this.db.data.slice().filter((item: T) => {
-        const searchStr = (item['name']).toLowerCase();
+        const searchStr = (item['name'] || item['mail']).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 
 import { Account } from 'shared/interface';
@@ -28,6 +29,7 @@ export class AccountInputComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private snackBar: MdSnackBar,
+    private router: Router,
     private loading: LoadingService,
     private accountService: AccountService
   ) {
@@ -50,8 +52,10 @@ export class AccountInputComponent implements OnInit {
       Object.entries(account).filter(w => this.form.controls[w[0]]).forEach(w => {
         this.form.controls[w[0]].setValue(w[1]);
       });
+    }, (error) => {
+      this.loading.setLoading(false);
+      this.router.navigate(['/']);
     });
-    // TODO 取得できない場合エラー
   }
 
   /**
@@ -77,6 +81,9 @@ export class AccountInputComponent implements OnInit {
       } else {
         this.isError = true;
       }
+    }, (error) => {
+      this.loading.setLoading(false);
+      this.router.navigate(['/']);
     });
   }
 }

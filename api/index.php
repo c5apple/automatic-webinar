@@ -27,9 +27,9 @@ try {
       $mtd = $dos[0] ?: 'index';
       break;
     case 2:
-      $dir = $dos[0] . '/';
-      $cls = ($dos[1] ?: 'index') . 'Action';
-      $mtd = 'index';
+      $dir = '';
+      $cls = ($dos[0] ?: 'index') . 'Action';
+      $mtd = $dos[1] ?: 'index';
       break;
     default:
       $dir = $dos[0] . '/';
@@ -40,7 +40,9 @@ try {
 
   // アクションクラス読み込み
   require_once('./controller/action.php');
-  require_once('./controller/' . $dir . $cls . '.php');
+  if (file_exists('./controller/' . $dir . $cls . '.php')) {
+    require_once('./controller/' . $dir . $cls . '.php');
+  }
 
   if (!class_exists($cls)) {
     // クラスなし

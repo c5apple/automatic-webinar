@@ -7,23 +7,23 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
 import { MyDatabase, MyDataSource } from 'shared/model';
-import { WebinarService, LoadingService } from 'shared/service';
-import { Webinar } from 'shared/interface';
+import { OptService, LoadingService } from 'shared/service';
+import { Opt } from 'shared/interface';
 import { ConfirmDialogComponent } from 'shared/component';
-import { WebinarInputComponent } from '../webinar-input/webinar-input.component';
+import { OptInputComponent } from '../opt-input/opt-input.component';
 
 /**
- * ウェビナー一覧
+ * オプト一覧
  */
 @Component({
-  selector: 'app-webinar-list',
-  templateUrl: './webinar-list.component.html',
-  styleUrls: ['./webinar-list.component.scss']
+  selector: 'app-opt-list',
+  templateUrl: './opt-list.component.html',
+  styleUrls: ['./opt-list.component.scss']
 })
-export class WebinarListComponent implements OnInit {
-  displayedColumns = ['checked', 'id', 'name', 'edit'];
-  database: MyDatabase<Webinar>;
-  dataSource: MyDataSource<Webinar> | null;
+export class OptListComponent implements OnInit {
+  displayedColumns = ['checked', 'id', 'webinarId', 'mail', 'preferredDate', 'edit'];
+  database: MyDatabase<Opt>;
+  dataSource: MyDataSource<Opt> | null;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MdPaginator) paginator: MdPaginator;
@@ -36,18 +36,18 @@ export class WebinarListComponent implements OnInit {
     private snackBar: MdSnackBar,
     private router: Router,
     private loading: LoadingService,
-    private webinarService: WebinarService
+    private optService: OptService
   ) { }
 
   ngOnInit() {
-    // ウェビナーを検索する
+    // オプトを検索する
     this.loading.setLoading(true);
-    this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
+    this.optService.getOpt().subscribe((opts: Opt[]) => {
       this.loading.setLoading(false);
 
-      if ('length' in webinars && 0 < webinars.length) {
-        this.database = new MyDatabase<Webinar>(webinars);
-        this.dataSource = new MyDataSource<Webinar>(this.database, this.paginator);
+      if ('length' in opts && 0 < opts.length) {
+        this.database = new MyDatabase<Opt>(opts);
+        this.dataSource = new MyDataSource<Opt>(this.database, this.paginator);
 
         Observable.fromEvent(this.filter.nativeElement, 'change')
           .debounceTime(150)
@@ -67,64 +67,64 @@ export class WebinarListComponent implements OnInit {
    * すべて選択
    */
   clickAll() {
-    this.database.data.forEach(w => {
-      w['checked'] = !this.allChecked;
+    this.database.data.forEach(o => {
+      o['checked'] = !this.allChecked;
     });
   }
 
   /**
-   * ウェビナーを登録する
+   * オプトを登録する
    */
-  add(webinarId?: number) {
+  add(optId?: number) {
     const config = {
       width: '95%',
       height: '90%'
     };
-    // ウェビナー登録ダイアログを表示
-    const inputDialogRef: MdDialogRef<WebinarInputComponent> = this.dialog.open(WebinarInputComponent, config);
-    inputDialogRef.componentInstance.webinarId = webinarId;
-    inputDialogRef.afterClosed().subscribe((webinar: Webinar) => {
-      if (!webinar) {
+    // オプト登録ダイアログを表示
+    const inputDialogRef: MdDialogRef<OptInputComponent> = this.dialog.open(OptInputComponent, config);
+    inputDialogRef.componentInstance.optId = optId;
+    inputDialogRef.afterClosed().subscribe((opt: Opt) => {
+      if (!opt) {
         return;
       }
 
-      const message = webinarId ? 'ウェビナーの更新が完了しました' : 'ウェビナーの登録が完了しました';
+      const message = optId ? 'オプトの更新が完了しました' : 'オプトの登録が完了しました';
       this.snackBar.open(message, undefined, { duration: 4000 });
 
       // 一覧更新
-      if (webinarId) {
-        this.database.data.find(w => w.id === webinarId).name = webinar.name;
+      if (optId) {
+        this.database.data.find(o => o.id === optId).mail = opt.mail;
       } else {
-        this.database.add(webinar);
+        this.database.add(opt);
       }
     });
   }
 
   /**
-   * ウェビナーを削除する
+   * オプトを削除する
    */
   delete() {
-    const webinarIds = this.database.data.filter(w => w['checked']).map(w => w.id);
-    if (webinarIds.length === 0) {
+    const optIds = this.database.data.filter(o => o['checked']).map(o => o.id);
+    if (optIds.length === 0) {
       return;
     }
 
     // 確認ダイアログ
     const dialogRef: MdDialogRef<ConfirmDialogComponent> = this.dialog.open(ConfirmDialogComponent);
-    dialogRef.componentInstance.title = `${webinarIds.length}件 削除します`;
+    dialogRef.componentInstance.title = `${optIds.length}件 削除します`;
     dialogRef.componentInstance.message = 'よろしいですか？';
     dialogRef.componentInstance.color = 'warn';
     dialogRef.afterClosed().subscribe((isOk: boolean) => {
       if (!isOk) {
         return;
       }
-      // ウェビナーを削除する
+      // オプトを削除する
       this.loading.setLoading(true);
-      this.webinarService.deleteWebinar(webinarIds).subscribe(ret => {
+      this.optService.deleteOpt(optIds).subscribe(ret => {
         this.loading.setLoading(false);
         if (ret) {
           // リストから削除
-          this.database.data = this.database.data.filter(w => webinarIds.indexOf(w.id) === -1);
+          this.database.data = this.database.data.filter(o => optIds.indexOf(o.id) === -1);
 
           const snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open('削除しました', '元に戻す', { duration: 4000 });
           snackBarRef.onAction().subscribe(() => {
@@ -143,18 +143,18 @@ export class WebinarListComponent implements OnInit {
       return;
     }
     const header = [Object.keys(this.database.data[0]).join(',')];
-    const body = this.database.data.map((webinar, index) => Object.values(webinar).join(','));
+    const body = this.database.data.map((opt, index) => Object.values(opt).join(','));
     const data = Array.prototype.concat(header, body).join('\r\n');
 
     const blob = new Blob([this.encode(data)], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
 
     if (navigator.msSaveOrOpenBlob) {
-      navigator.msSaveBlob(blob, 'webinar.csv');
+      navigator.msSaveBlob(blob, 'opt.csv');
     } else {
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'webinar.csv';
+      a.download = 'opt.csv';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
