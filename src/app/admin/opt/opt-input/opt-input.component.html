@@ -15,11 +15,14 @@
     <md-form-field>
       <input mdInput type="email" formControlName="mail" placeholder="メールアドレス" required maxlength="254">
       <md-error *ngIf="form.controls['mail'].hasError('required')">入力してください</md-error>
+      <md-error *ngIf="form.controls['mail'].hasError('mailFormat')">メールアドレス形式で入力してください</md-error>
       <md-error *ngIf="form.controls['mail'].hasError('maxlength')">254文字以内で入力してください</md-error>
     </md-form-field>
     <!-- 希望日 -->
     <md-form-field>
-      <input mdInput type="date" formControlName="preferredDate" placeholder="希望日" required maxlength="10">
+      <input mdInput formControlName="preferredDate" [mdDatepicker]="picker" placeholder="希望日" required>
+      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+      <md-datepicker #picker></md-datepicker>
       <md-error *ngIf="form.controls['preferredDate'].hasError('required')">入力してください</md-error>
       <md-error *ngIf="form.controls['preferredDate'].hasError('maxlength')">10文字以内で入力してください</md-error>
     </md-form-field>

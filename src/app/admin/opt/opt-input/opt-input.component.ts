@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MdDialogRef } from '@angular/material';
+import { MdDialogRef, DateAdapter, NativeDateAdapter } from '@angular/material';
 
 import { OptInputForm } from './opt-input-form';
 import { LoadingService, OptService } from 'shared/service';
@@ -33,8 +33,10 @@ export class OptInputComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loading: LoadingService,
     private optService: OptService,
+    private dateAdapter: DateAdapter<NativeDateAdapter>
   ) {
     this.form = this.formBuilder.group(OptInputForm.validators);
+    this.dateAdapter.setLocale('ja');
   }
 
   ngOnInit() {
