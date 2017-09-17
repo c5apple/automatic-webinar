@@ -1,0 +1,62 @@
+<h2>オプト一覧</h2>
+
+<md-card class="container">
+  <div class="header-container">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="検索">
+    </md-input-container>
+    <button md-icon-button (click)="add()"><md-icon>add</md-icon></button>
+    <button md-icon-button (click)="delete()"><md-icon>delete</md-icon></button>
+    <button md-icon-button (click)="downloadCsv()"><md-icon>file_download</md-icon></button>
+  </div>
+
+  <md-table #table [dataSource]="dataSource">
+    <!-- Check Column -->
+    <ng-container cdkColumnDef="checked">
+      <md-header-cell *cdkHeaderCellDef>
+        <md-checkbox [(ngModel)]="allChecked" (click)="clickAll()"></md-checkbox>
+      </md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <md-checkbox [(ngModel)]="row.checked"></md-checkbox>
+      </md-cell>
+    </ng-container>
+
+    <!-- ID Column -->
+    <ng-container cdkColumnDef="id">
+      <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.id}} </md-cell>
+    </ng-container>
+
+    <!-- WebinarId Column -->
+    <ng-container cdkColumnDef="webinarId">
+      <md-header-cell *cdkHeaderCellDef> ウェビナー </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.webinarId}} </md-cell>
+    </ng-container>
+
+    <!-- Mail Column -->
+    <ng-container cdkColumnDef="mail">
+      <md-header-cell *cdkHeaderCellDef> Mail </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.mail}} </md-cell>
+    </ng-container>
+
+    <!-- PreferredDate Column -->
+    <ng-container cdkColumnDef="preferredDate">
+      <md-header-cell *cdkHeaderCellDef> 希望日 </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.preferredDate | date:'yyyy/MM/dd'}} </md-cell>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container cdkColumnDef="edit">
+      <md-header-cell *cdkHeaderCellDef> &nbsp; </md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <button md-icon-button (click)="add(row.id)"><md-icon>edit</md-icon></button>
+      </md-cell>
+    </ng-container>
+
+    <!-- Header -->
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;" [ngClass]="{selected: row.checked}"></md-row>
+  </md-table>
+
+  <md-paginator #paginator [length]="database ? database.data.length : 0" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></md-paginator>
+</md-card>

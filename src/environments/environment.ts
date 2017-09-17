@@ -4,12 +4,14 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 import {
-  WebinarService, WebinarMockService,
-  AccountService, AccountMockService
+  AccountService, AccountMockService,
+  OptService, OptMockService,
+  WebinarService, WebinarMockService
 } from 'shared/service';
 
 export const environment = {
   production: false,
-  webinarService: { provide: WebinarService, useClass: WebinarMockService },
-  accountService: { provide: AccountService, useClass: AccountMockService }
+  accountService: { provide: AccountService, useClass: AccountMockService },
+  optService: { provide: OptService, useClass: OptMockService },
+  webinarService: { provide: WebinarService, useClass: WebinarMockService }
 };
