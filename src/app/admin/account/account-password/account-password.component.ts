@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 
 import { Account } from 'shared/interface';
@@ -28,6 +29,7 @@ export class AccountPasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private snackBar: MdSnackBar,
+    private router: Router,
     private loading: LoadingService,
     private accountService: AccountService
   ) {
@@ -47,8 +49,10 @@ export class AccountPasswordComponent implements OnInit {
       this.loading.setLoading(false);
 
       this.account = account;
+    }, (error) => {
+      this.loading.setLoading(false);
+      this.router.navigate(['/']);
     });
-    // TODO 取得できない場合エラー
   }
 
   /**
@@ -73,6 +77,9 @@ export class AccountPasswordComponent implements OnInit {
       } else {
         this.isError = true;
       }
+    }, (error) => {
+      this.loading.setLoading(false);
+      this.router.navigate(['/']);
     });
   }
 }
