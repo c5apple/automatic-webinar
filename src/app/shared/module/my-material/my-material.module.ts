@@ -12,6 +12,7 @@ import {
   MdNativeDateModule,
   MdPaginatorModule,
   MdSnackBarModule,
+  MdSelectModule,
   MdProgressSpinnerModule,
   MdTableModule,
   MdToolbarModule
@@ -31,6 +32,7 @@ import {
     MdNativeDateModule,
     MdPaginatorModule,
     MdSnackBarModule,
+    MdSelectModule,
     MdProgressSpinnerModule,
     MdTableModule,
     MdToolbarModule
@@ -48,6 +50,7 @@ import {
     MdNativeDateModule,
     MdPaginatorModule,
     MdSnackBarModule,
+    MdSelectModule,
     MdProgressSpinnerModule,
     MdTableModule,
     MdToolbarModule

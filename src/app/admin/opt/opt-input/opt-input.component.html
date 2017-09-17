@@ -6,11 +6,13 @@
       <input mdInput type="text" formControlName="id" placeholder="オプトID(自動採番)">
     </md-form-field>
     <!-- ウェビナーID -->
-    <md-form-field>
-      <input mdInput type="text" formControlName="webinarId" placeholder="ウェビナー名" required maxlength="11">
-      <md-error *ngIf="form.controls['webinarId'].hasError('required')">入力してください</md-error>
-      <md-error *ngIf="form.controls['webinarId'].hasError('maxlength')">60文字以内で入力してください</md-error>
-    </md-form-field>
+    <md-select formControlName="webinarId" placeholder="ウェビナー" required>
+      <md-option *ngFor="let webinar of selectWebinar" [value]="webinar.value">
+        {{ webinar.text }}
+      </md-option>
+    </md-select>
+    <md-error *ngIf="form.controls['webinarId'].hasError('required')">ウェビナーを選択してください</md-error>
+
     <!-- メールアドレス -->
     <md-form-field>
       <input mdInput type="email" formControlName="mail" placeholder="メールアドレス" required maxlength="254">

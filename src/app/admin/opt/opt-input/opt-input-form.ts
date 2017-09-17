@@ -18,7 +18,7 @@ export class OptInputForm {
     /** オプトID */
     id: [{ value: '', disabled: true }],
     /** ウェビナーID */
-    webinarId: ['', Validators.compose([Validators.required, Validators.maxLength(11)])],
+    webinarId: [null, Validators.compose([Validators.required, Validators.maxLength(11)])],
     /** メールアドレス */
     mail: ['', Validators.compose([Validators.required, Validators.maxLength(254), OptInputForm.mailFormat])],
     /** 希望日 */

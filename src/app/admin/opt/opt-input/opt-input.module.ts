@@ -20,7 +20,8 @@ import { MyMaterialModule } from 'shared/module';
     OptInputComponent
   ],
   providers: [
-    environment.optService
+    environment.optService,
+    environment.webinarService
   ]
 })
 export class OptInputModule { }

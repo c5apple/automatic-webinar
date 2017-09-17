@@ -93,7 +93,10 @@ export class OptListComponent implements OnInit {
 
       // 一覧更新
       if (optId) {
-        this.database.data.find(o => o.id === optId).mail = opt.mail;
+        const o = this.database.data.find(o => o.id === optId);
+        o.webinarId = opt.webinarId;
+        o.mail = opt.mail;
+        o.preferredDate = opt.preferredDate;
       } else {
         this.database.add(opt);
       }
