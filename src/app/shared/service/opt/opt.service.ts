@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from '../api.service';
 import { Opt } from 'shared/interface';
-import { WebinarInputForm } from '../../../admin/webinar/webinar-input/webinar-input-form';
+import { OptInputForm } from '../../../admin/opt/opt-input/opt-input-form';
 
 /**
  * オプトサービス
@@ -26,7 +26,7 @@ export class OptService extends ApiService {
   /**
    * オプトを登録/更新する
    */
-  public saveOpt(opt: WebinarInputForm): Observable<any> {
+  public saveOpt(opt: OptInputForm): Observable<any> {
     const url = '/api/opt';
     return this.post(url, opt);
   }

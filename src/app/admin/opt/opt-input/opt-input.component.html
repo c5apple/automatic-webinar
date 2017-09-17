@@ -1,3 +1,33 @@
-<p>
-  opt-input works!
-</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
+  <h2 md-dialog-title>オプト{{webinarId ? '更新' : '登録'}}</h2>
+  <md-dialog-content>
+    <!-- ID -->
+    <md-input-container>
+      <input mdInput type="text" formControlName="id" placeholder="オプトID(自動採番)">
+    </md-input-container>
+    <!-- ウェビナーID -->
+    <md-input-container>
+      <input mdInput type="text" formControlName="webinarId" placeholder="ウェビナー名" required maxlength="11">
+      <md-error *ngIf="form.controls['webinarId'].hasError('required')">入力してください</md-error>
+      <md-error *ngIf="form.controls['webinarId'].hasError('maxlength')">60文字以内で入力してください</md-error>
+    </md-input-container>
+    <!-- メールアドレス -->
+    <md-input-container>
+      <input mdInput type="email" formControlName="mail" placeholder="メールアドレス" required maxlength="254">
+      <md-error *ngIf="form.controls['mail'].hasError('required')">入力してください</md-error>
+      <md-error *ngIf="form.controls['mail'].hasError('maxlength')">254文字以内で入力してください</md-error>
+    </md-input-container>
+    <!-- 希望日 -->
+    <md-input-container>
+      <input mdInput type="date" formControlName="preferredDate" placeholder="希望日" required maxlength="10">
+      <md-error *ngIf="form.controls['preferredDate'].hasError('required')">入力してください</md-error>
+      <md-error *ngIf="form.controls['preferredDate'].hasError('maxlength')">10文字以内で入力してください</md-error>
+    </md-input-container>
+
+    <md-error *ngIf="isError">問題が発生しています<br>システム管理者に報告してください</md-error>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <button md-button md-dialog-close>キャンセル</button>
+    <button md-raised-button [color]="'primary'">{{webinarId ? '更新' : '登録'}}</button>
+  </md-dialog-actions>
+</form>

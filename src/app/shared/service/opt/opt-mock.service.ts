@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { OptService } from './opt.service';
 import { Opt } from 'shared/interface';
-import { WebinarInputForm } from '../../../admin/webinar/webinar-input/webinar-input-form';
+import { OptInputForm } from '../../../admin/opt/opt-input/opt-input-form';
 
 /**
  * オプトサービス
@@ -27,9 +27,9 @@ export class OptMockService extends OptService {
   /**
    * オプトを登録/更新する
    */
-  public saveOpt(opt: WebinarInputForm): Observable<any> {
-    const webinarId = 2;
-    return Observable.of(webinarId);
+  public saveOpt(opt: OptInputForm): Observable<any> {
+    const optId = 2;
+    return Observable.of(optId);
     // return Observable.of(false);
   }
 
