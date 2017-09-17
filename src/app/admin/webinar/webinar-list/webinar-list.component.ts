@@ -12,8 +12,6 @@ import { Webinar } from 'shared/interface';
 import { ConfirmDialogComponent } from 'shared/component';
 import { WebinarInputComponent } from '../webinar-input/webinar-input.component';
 
-declare var Encoding;
-
 /**
  * ウェビナー一覧
  */
