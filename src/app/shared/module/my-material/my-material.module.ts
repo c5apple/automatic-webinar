@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CdkTableModule } from '@angular/cdk';
+import { CdkTableModule } from '@angular/cdk/table';
 import {
   MdButtonModule,
   MdCardModule,

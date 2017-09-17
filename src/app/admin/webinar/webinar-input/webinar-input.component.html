@@ -1,14 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
   <h2 md-dialog-title>ウェビナー{{webinarId ? '更新' : '登録'}}</h2>
   <md-dialog-content>
-    <md-input-container>
+    <md-form-field>
       <input mdInput type="text" formControlName="id" placeholder="ウェビナーID(自動採番)">
-    </md-input-container>
-    <md-input-container>
+    </md-form-field>
+    <md-form-field>
       <input mdInput type="text" formControlName="name" placeholder="ウェビナー名" required maxlength="60">
       <md-error *ngIf="form.controls['name'].hasError('required')">入力してください</md-error>
       <md-error *ngIf="form.controls['name'].hasError('maxlength')">60文字以内で入力してください</md-error>
-    </md-input-container>
+    </md-form-field>
     <md-error *ngIf="isError">問題が発生しています<br>システム管理者に報告してください</md-error>
   </md-dialog-content>
   <md-dialog-actions>

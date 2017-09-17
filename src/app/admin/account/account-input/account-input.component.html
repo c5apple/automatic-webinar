@@ -4,17 +4,17 @@
   <input type="hidden" formControlName="id">
 
   <!-- Login ID Column -->
-  <md-input-container>
+  <md-form-field>
     <input mdInput type="text" formControlName="loginId" placeholder="ログインID" required maxlength="32">
     <md-error *ngIf="form.controls['loginId'].hasError('required')">入力してください</md-error>
     <md-error *ngIf="form.controls['loginId'].hasError('maxlength')">32文字以内で入力してください</md-error>
-  </md-input-container>
+  </md-form-field>
 
   <!-- Name Column -->
-  <md-input-container>
+  <md-form-field>
     <input mdInput type="text" formControlName="name" placeholder="名前" maxlength="32">
     <md-error *ngIf="form.controls['name'].hasError('maxlength')">32文字以内で入力してください</md-error>
-  </md-input-container>
+  </md-form-field>
 
   <md-error *ngIf="isError">問題が発生しています<br>システム管理者に報告してください</md-error>
 
