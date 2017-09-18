@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MdDialogRef } from '@angular/material';
+import { MdDialogRef, DateAdapter, NativeDateAdapter } from '@angular/material';
 
 import { OptInputForm } from './opt-input-form';
-import { LoadingService, OptService } from 'shared/service';
-import { Opt } from 'shared/interface';
+import { LoadingService, OptService, WebinarService } from 'shared/service';
+import { Opt, Webinar } from 'shared/interface';
 
 /**
  * オプト登録
@@ -23,6 +23,9 @@ export class OptInputComponent implements OnInit {
   /** 入力フォーム */
   form: FormGroup;
 
+  /** ウェビナーセレクトボックス */
+  selectWebinar: {}[] = [];
+
   /** APIエラー */
   isError: boolean;
 
@@ -30,11 +33,14 @@ export class OptInputComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dialogRef: MdDialogRef<OptInputComponent>,
+    private dateAdapter: DateAdapter<NativeDateAdapter>,
     private formBuilder: FormBuilder,
     private loading: LoadingService,
     private optService: OptService,
+    private webinarService: WebinarService
   ) {
     this.form = this.formBuilder.group(OptInputForm.validators);
+    this.dateAdapter.setLocale('ja');
   }
 
   ngOnInit() {
@@ -50,6 +56,9 @@ export class OptInputComponent implements OnInit {
         }
       });
     }
+
+    // ウェビナーを取得する
+    this.getWebinar();
   }
 
   /**
@@ -66,6 +75,25 @@ export class OptInputComponent implements OnInit {
     }, (error) => {
       this.loading.setLoading(false);
       this.dialogRef.close();
+      this.router.navigate(['/']);
+    });
+  }
+
+  /**
+   * ウェビナーを取得する
+   */
+  getWebinar() {
+    // ウェビナーを検索する
+    this.loading.setLoading(true);
+    this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
+      this.loading.setLoading(false);
+
+      // セレクトボックス定義
+      this.selectWebinar = webinars.map(webinar => {
+        return { value: webinar.id, text: webinar.name }
+      });
+    }, (error) => {
+      this.loading.setLoading(false);
       this.router.navigate(['/']);
     });
   }

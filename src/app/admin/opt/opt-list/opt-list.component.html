@@ -2,9 +2,9 @@
 
 <md-card class="container">
   <div class="header-container">
-    <md-input-container floatPlaceholder="never">
+    <md-form-field floatPlaceholder="never">
       <input mdInput #filter placeholder="検索">
-    </md-input-container>
+    </md-form-field>
     <button md-icon-button (click)="add()"><md-icon>add</md-icon></button>
     <button md-icon-button (click)="delete()"><md-icon>delete</md-icon></button>
     <button md-icon-button (click)="downloadCsv()"><md-icon>file_download</md-icon></button>
@@ -30,7 +30,7 @@
     <!-- WebinarId Column -->
     <ng-container cdkColumnDef="webinarId">
       <md-header-cell *cdkHeaderCellDef> ウェビナー </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.webinarId}} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{row.webinarId | webinarName | async}} </md-cell>
     </ng-container>
 
     <!-- Mail Column -->

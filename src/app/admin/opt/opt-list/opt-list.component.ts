@@ -93,7 +93,10 @@ export class OptListComponent implements OnInit {
 
       // 一覧更新
       if (optId) {
-        this.database.data.find(o => o.id === optId).mail = opt.mail;
+        const o = this.database.data.find(o => o.id === optId);
+        o.webinarId = opt.webinarId;
+        o.mail = opt.mail;
+        o.preferredDate = opt.preferredDate;
       } else {
         this.database.add(opt);
       }
@@ -143,7 +146,7 @@ export class OptListComponent implements OnInit {
       return;
     }
     const header = [Object.keys(this.database.data[0]).join(',')];
-    const body = this.database.data.map((opt, index) => Object.values(opt).join(','));
+    const body = this.database.data.map((opt, index) => Object.values(new Opt(opt)).join(','));
     const data = Array.prototype.concat(header, body).join('\r\n');
 
     const blob = new Blob([this.encode(data)], { type: 'text/csv' });

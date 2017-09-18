@@ -41,7 +41,7 @@ export class OptMockService extends OptService {
     for (let i = 1; i <= 100; i++) {
       opts.push({
         id: i,
-        webinarId: 1,
+        webinarId: i,
         mail: `${i}@example.com`,
         preferredDate: new Date()
       } as Opt);

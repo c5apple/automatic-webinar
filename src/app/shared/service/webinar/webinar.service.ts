@@ -20,7 +20,12 @@ export class WebinarService extends ApiService {
     const params = {
       id: webinarId
     };
-    return this.get(url, params).map(data => data as Webinar | Webinar[]);
+    return this.get(url, params).map((data: Webinar | Webinar[]) => {
+      if ('length' in data) {
+        return Array.from((data as Webinar[])).map(row => new Webinar(row));
+      }
+      return new Webinar(data);
+    });
   }
 
   /**

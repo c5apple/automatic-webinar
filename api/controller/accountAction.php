@@ -118,7 +118,7 @@ class accountAction extends Action {
     if ($ret) {
       echo json_encode($ret);
     } else {
-      // TODO 500 error
+      // 500 error
       return parent::InternalServerError();
     }
   }

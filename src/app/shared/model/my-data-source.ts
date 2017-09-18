@@ -1,5 +1,5 @@
-import { DataSource } from '@angular/cdk';
 import { MdPaginator } from '@angular/material';
+import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/startWith';
