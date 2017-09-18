@@ -41,7 +41,7 @@ class webinarAction extends Action {
 
     if ($webinar_id && is_numeric($webinar_id)) {
       $where = array(
-          'id' => '\'' . $webinar_id . '\''
+          'id' => $webinar_id
       );
 
       // 検索
@@ -76,10 +76,10 @@ class webinarAction extends Action {
 
     if ($webinar_id && is_numeric($webinar_id)) {
       $set   = array(
-          'name' => '\'' . $webinar_name . '\''
+          'name' => StringUtil::toStr($webinar_name)
       );
       $where = array(
-          'id' => '\'' . $webinar_id . '\''
+          'id' => $webinar_id
       );
 
       // 更新
@@ -87,7 +87,7 @@ class webinarAction extends Action {
     } else {
       $value = array(
           'id'   => 'NULL',
-          'name' => '\'' . $webinar_name . '\''
+          'name' => StringUtil::toStr($webinar_name)
       );
 
       // 登録
@@ -100,7 +100,7 @@ class webinarAction extends Action {
     if ($ret) {
       echo json_encode($webinar_id);
     } else {
-      // TODO 500 error
+      // 500 error
       return parent::InternalServerError();
     }
   }
@@ -124,8 +124,8 @@ class webinarAction extends Action {
         // 論理削除
         $ret = $this->webinar->deleteFlg($where);
         if (!$ret) {
-          // TODO 500 error
-          $ret = false;
+          // 500 error
+          return parent::InternalServerError();
         }
       });
       echo json_encode(true);

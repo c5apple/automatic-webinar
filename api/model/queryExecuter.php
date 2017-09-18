@@ -257,7 +257,7 @@ class dao {
    * レコードセットより、配列を再構築する
    */
   function setArray($rs) {
-    $ret = NULL;
+    $ret = array();
     $cnt = 0;
 
     if ($rs && mysql_num_rows($rs) > 0) {
