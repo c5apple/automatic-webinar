@@ -146,7 +146,7 @@ export class OptListComponent implements OnInit {
       return;
     }
     const header = [Object.keys(this.database.data[0]).join(',')];
-    const body = this.database.data.map((opt, index) => Object.values(opt).join(','));
+    const body = this.database.data.map((opt, index) => Object.values(new Opt(opt)).join(','));
     const data = Array.prototype.concat(header, body).join('\r\n');
 
     const blob = new Blob([this.encode(data)], { type: 'text/csv' });

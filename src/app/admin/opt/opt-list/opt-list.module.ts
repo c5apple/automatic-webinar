@@ -6,13 +6,15 @@ import { environment } from 'env/environment';
 import { OptListComponent } from './opt-list.component';
 import { MyMaterialModule } from 'shared/module';
 import { ConfirmDialogModule } from 'shared/component';
+import { WebinarNamePipeModule } from 'shared/pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     MyMaterialModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    WebinarNamePipeModule
   ],
   declarations: [
     OptListComponent

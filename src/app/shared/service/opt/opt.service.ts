@@ -20,7 +20,12 @@ export class OptService extends ApiService {
     const params = {
       id: optId
     };
-    return this.get(url, params).map(data => data as Opt | Opt[]);
+    return this.get(url, params).map((data: Opt | Opt[]) => {
+      if ('length' in data) {
+        return Array.from((data as Opt[])).map(row => new Opt(row));
+      }
+      return new Opt(data);
+    });
   }
 
   /**
@@ -28,7 +33,21 @@ export class OptService extends ApiService {
    */
   public saveOpt(opt: OptInputForm): Observable<any> {
     const url = '/api/opt';
-    return this.post(url, opt);
+    const params = {
+      id: opt.id,
+      webinarId: opt.webinarId,
+      mail: opt.mail,
+      preferredDate: this.formatDate(opt.preferredDate)
+    };
+    return this.post(url, params);
+  }
+
+  /** Date -> String */
+  private formatDate(date: Date): string {
+    const y = `${date.getFullYear()}`;
+    const m = `0${date.getMonth() + 1}`.slice(-2);
+    const d = `0${date.getDate()}`.slice(-2);
+    return `${y}-${m}-${d}`;
   }
 
   /**

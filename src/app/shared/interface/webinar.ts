@@ -1,7 +1,7 @@
 /**
  * ウェビナー
  */
-export interface Webinar {
+export class Webinar {
 
   // ----------------------------------
   // API返却値
@@ -19,4 +19,11 @@ export interface Webinar {
   /** 選択されているか */
   checked?: boolean;
 
+  constructor(webinar?: any) {
+    if (!webinar) {
+      return;
+    }
+    this.id = webinar.id;
+    this.name = webinar.name;
+  }
 }

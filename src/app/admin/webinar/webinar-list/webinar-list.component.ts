@@ -143,7 +143,7 @@ export class WebinarListComponent implements OnInit {
       return;
     }
     const header = [Object.keys(this.database.data[0]).join(',')];
-    const body = this.database.data.map((webinar, index) => Object.values(webinar).join(','));
+    const body = this.database.data.map((webinar, index) => Object.values(new Webinar(webinar)).join(','));
     const data = Array.prototype.concat(header, body).join('\r\n');
 
     const blob = new Blob([this.encode(data)], { type: 'text/csv' });

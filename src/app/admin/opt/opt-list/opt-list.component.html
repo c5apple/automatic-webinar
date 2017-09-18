@@ -30,7 +30,7 @@
     <!-- WebinarId Column -->
     <ng-container cdkColumnDef="webinarId">
       <md-header-cell *cdkHeaderCellDef> ウェビナー </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.webinarId}} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{row.webinarId | webinarName | async}} </md-cell>
     </ng-container>
 
     <!-- Mail Column -->
