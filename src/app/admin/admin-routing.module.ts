@@ -10,11 +10,12 @@ import { WebinarListComponent } from './webinar/webinar-list/webinar-list.compon
 const routes: Routes = [
   {
     path: '', component: AdminComponent,
+    data: { title: '' },
     children: [
-      { path: 'account', component: AccountInputComponent },
-      { path: 'password', component: AccountPasswordComponent },
-      { path: 'opt/list', component: OptListComponent },
-      { path: 'webinar/list', component: WebinarListComponent },
+      { path: 'account', component: AccountInputComponent, data: { title: 'アカウント変更' } },
+      { path: 'password', component: AccountPasswordComponent, data: { title: 'パスワード変更' } },
+      { path: 'opt/list', component: OptListComponent, data: { title: 'オプト一覧' } },
+      { path: 'webinar/list', component: WebinarListComponent, data: { title: 'ウェビナー一覧' } },
     ]
   }
 ];
