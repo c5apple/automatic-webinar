@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
+  <div class="container">
+    <md-card>
+      <md-form-field>
+        <input mdInput type="text" formControlName="id" placeholder="ID" required maxlength="30">
+        <md-error *ngIf="form.controls['id'].hasError('required')">入力してください</md-error>
+        <md-error *ngIf="form.controls['id'].hasError('maxlength')">30文字以内で入力してください</md-error>
+      </md-form-field>
+    </md-card>
+    <md-card>
+      <md-form-field>
+        <input mdInput type="password" formControlName="pass" placeholder="PASSWORD" required maxlength="30">
+        <md-error *ngIf="form.controls['pass'].hasError('required')">入力してください</md-error>
+        <md-error *ngIf="form.controls['pass'].hasError('maxlength')">30文字以内で入力してください</md-error>
+      </md-form-field>
+    </md-card>
+    <button md-raised-button [color]="'primary'">LOGIN</button>
+  </div>
+
+  <md-error *ngIf="isInValid">ユーザ名またはパスワードが間違っています</md-error>
+  <md-error *ngIf="isError">問題が発生しています<br>システム管理者に報告してください</md-error>
+
+</form>

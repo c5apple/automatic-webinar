@@ -10,7 +10,7 @@ import { WebinarListComponent } from './webinar/webinar-list/webinar-list.compon
 const routes: Routes = [
   {
     path: '', component: AdminComponent,
-    data: { title: '' },
+    data: { title: 'HOME' },
     children: [
       { path: 'account', component: AccountInputComponent, data: { title: 'アカウント変更' } },
       { path: 'password', component: AccountPasswordComponent, data: { title: 'パスワード変更' } },

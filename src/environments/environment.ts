@@ -5,6 +5,7 @@
 
 import {
   AccountService, AccountMockService,
+  AuthService, AuthMockService,
   OptService, OptMockService,
   WebinarService, WebinarMockService
 } from 'shared/service';
@@ -12,6 +13,7 @@ import {
 export const environment = {
   production: false,
   accountService: { provide: AccountService, useClass: AccountMockService },
+  authService: { provide: AuthService, useClass: AuthMockService },
   optService: { provide: OptService, useClass: OptMockService },
   webinarService: { provide: WebinarService, useClass: WebinarMockService }
 };
