@@ -1,22 +1,27 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
   <h2>アカウント変更</h2>
 
-  <input type="hidden" formControlName="id">
+  <md-card>
 
-  <!-- Login ID Column -->
-  <md-form-field>
-    <input mdInput type="text" formControlName="loginId" placeholder="ログインID" required maxlength="32">
-    <md-error *ngIf="form.controls['loginId'].hasError('required')">入力してください</md-error>
-    <md-error *ngIf="form.controls['loginId'].hasError('maxlength')">32文字以内で入力してください</md-error>
-  </md-form-field>
+    <input type="hidden" formControlName="id">
 
-  <!-- Name Column -->
-  <md-form-field>
-    <input mdInput type="text" formControlName="name" placeholder="名前" maxlength="32">
-    <md-error *ngIf="form.controls['name'].hasError('maxlength')">32文字以内で入力してください</md-error>
-  </md-form-field>
+    <!-- Login ID Column -->
+    <md-form-field>
+      <input mdInput type="text" formControlName="loginId" placeholder="ログインID" required maxlength="32">
+      <md-error *ngIf="form.controls['loginId'].hasError('required')">入力してください</md-error>
+      <md-error *ngIf="form.controls['loginId'].hasError('maxlength')">32文字以内で入力してください</md-error>
+    </md-form-field>
 
-  <md-error *ngIf="isError">問題が発生しています<br>システム管理者に報告してください</md-error>
+    <!-- Name Column -->
+    <md-form-field>
+      <input mdInput type="text" formControlName="name" placeholder="名前" maxlength="32">
+      <md-error *ngIf="form.controls['name'].hasError('maxlength')">32文字以内で入力してください</md-error>
+    </md-form-field>
 
-  <button md-raised-button [color]="'primary'">更新</button>
+    <md-error *ngIf="isError">問題が発生しています<br>システム管理者に報告してください</md-error>
+
+    <md-card-actions>
+      <button md-raised-button [color]="'primary'">更新</button>
+    </md-card-actions>
+  </md-card>
 </form>
