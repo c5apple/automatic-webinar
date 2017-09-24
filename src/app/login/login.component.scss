@@ -1,0 +1,33 @@
+form {
+  position: fixed;
+  top: calc(30%);
+  left: calc((100% - 600px) /2);
+}
+
+.container {
+  display: flex;
+  padding: 0;
+  max-height: 500px;
+  min-width: 300px;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+button {
+  padding: 24px;
+}
+
+@media only screen and (max-width: 767px) {
+  form {
+    position: relative;
+    top: initial;
+    left: initial;
+  }
+  .container {
+    flex-direction: column;
+  }
+}

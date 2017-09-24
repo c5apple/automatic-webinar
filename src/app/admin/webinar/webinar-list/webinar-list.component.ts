@@ -40,22 +40,24 @@ export class WebinarListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.database = new MyDatabase<Webinar>([]);
+    this.dataSource = new MyDataSource<Webinar>(this.database, this.paginator);
+
+    Observable.fromEvent(this.filter.nativeElement, 'change')
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) { return; }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      });
+
     // ウェビナーを検索する
     this.loading.setLoading(true);
     this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
       this.loading.setLoading(false);
 
       if ('length' in webinars && 0 < webinars.length) {
-        this.database = new MyDatabase<Webinar>(webinars);
-        this.dataSource = new MyDataSource<Webinar>(this.database, this.paginator);
-
-        Observable.fromEvent(this.filter.nativeElement, 'change')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          });
+        this.database.data = webinars;
       }
     }, (error) => {
       this.loading.setLoading(false);
@@ -95,6 +97,7 @@ export class WebinarListComponent implements OnInit {
       if (webinarId) {
         this.database.data.find(w => w.id === webinarId).name = webinar.name;
       } else {
+        console.log(this.database);
         this.database.add(webinar);
       }
     });
@@ -126,7 +129,7 @@ export class WebinarListComponent implements OnInit {
           // リストから削除
           this.database.data = this.database.data.filter(w => webinarIds.indexOf(w.id) === -1);
 
-          const snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open('削除しました', '元に戻す', { duration: 4000 });
+          const snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open('削除しました', undefined, { duration: 4000 });
           snackBarRef.onAction().subscribe(() => {
             // TODO リストアAPI
           });

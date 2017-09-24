@@ -2,7 +2,9 @@
   <md-toolbar>
     <div class="footer-container">
       <div class="copylight">
-        Copyright © 2017 AutomaticWebinar (Ver.1.0) All Rights Reserved.
+        Copyright © 2017 AutomaticWebinar
+        <ng-container *ngIf="isLoggedIn">(Ver.1.0)</ng-container>
+        All Rights Reserved.
       </div>
     </div>
   </md-toolbar>

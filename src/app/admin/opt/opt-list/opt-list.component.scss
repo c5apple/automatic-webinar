@@ -33,26 +33,32 @@
   background-color: #F5F5F5;
 }
 
-.mat-cell, .mat-header-cell {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .mat-column-checked {
   flex-grow: 1;
 }
 .mat-column-id {
   flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .mat-column-webinarId {
   flex-grow: 2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .mat-column-mail {
   flex-grow: 3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .mat-column-preferredDate {
   flex-grow: 2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .mat-column-edit {
   flex-grow: 1;

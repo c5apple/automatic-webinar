@@ -48,12 +48,10 @@ export class AppComponent {
     if (parent && parent.snapshot.data && parent.snapshot.data.title) {
       data.push(parent.snapshot.data.title);
     }
-
     if (state && parent) {
       // 再帰
       data.push(... this.getTitle(state, state.firstChild(parent)));
     }
-
     return data;
   }
 }

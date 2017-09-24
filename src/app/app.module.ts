@@ -8,7 +8,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MyMaterialModule } from 'shared/module';
 import { HeaderModule, FooterModule, LoadingModule } from 'shared/component';
-import { LoadingService } from 'shared/service';
+import { LoginModule } from 'app/login/login.module';
+import { LoadingService, AuthGuard } from 'shared/service';
+import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import { LoadingService } from 'shared/service';
     MyMaterialModule,
     LoadingModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    LoginModule,
+    PageNotFoundModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AdminComponent implements OnInit {
 
   /** 現在のURL */
-  routerUrl: String;
+  routerUrl = '/a';
 
   constructor(private router: Router) { }
 

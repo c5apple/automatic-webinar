@@ -1,5 +1,6 @@
 import {
   AccountService,
+  AuthService,
   OptService,
   WebinarService
 } from 'shared/service';
@@ -7,6 +8,7 @@ import {
 export const environment = {
   production: true,
   accountService: AccountService,
+  authService: AuthService,
   optService: OptService,
   webinarService: WebinarService
 };

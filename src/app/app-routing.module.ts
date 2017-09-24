@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from 'shared/service';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },  // TODO LoginComponentに差し替え
+  { path: '', component: LoginComponent, data: { title: 'ログイン' } },
   // { path: 'login', component: LoginComponent },
   // { path: 'logout', component: LogoutComponent },
-  { path: 'a', loadChildren: './admin/admin.module#AdminModule' },  // TODO guard
-  // { path: '**', component: PageNotFoundComponent, pathMatch: 'full' }
+  { path: 'a', loadChildren: './admin/admin.module#AdminModule', canActivate: [AuthGuard] },
+  { path: '**', component: PageNotFoundComponent, pathMatch: 'full' }
 ];
 
 @NgModule({

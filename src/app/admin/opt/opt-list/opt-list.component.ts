@@ -40,22 +40,24 @@ export class OptListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.database = new MyDatabase<Opt>([]);
+    this.dataSource = new MyDataSource<Opt>(this.database, this.paginator);
+
+    Observable.fromEvent(this.filter.nativeElement, 'change')
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) { return; }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      });
+
     // オプトを検索する
     this.loading.setLoading(true);
     this.optService.getOpt().subscribe((opts: Opt[]) => {
       this.loading.setLoading(false);
 
       if ('length' in opts && 0 < opts.length) {
-        this.database = new MyDatabase<Opt>(opts);
-        this.dataSource = new MyDataSource<Opt>(this.database, this.paginator);
-
-        Observable.fromEvent(this.filter.nativeElement, 'change')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          });
+        this.database.data = opts;
       }
     }, (error) => {
       this.loading.setLoading(false);
@@ -129,7 +131,7 @@ export class OptListComponent implements OnInit {
           // リストから削除
           this.database.data = this.database.data.filter(o => optIds.indexOf(o.id) === -1);
 
-          const snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open('削除しました', '元に戻す', { duration: 4000 });
+          const snackBarRef: MdSnackBarRef<SimpleSnackBar> = this.snackBar.open('削除しました', undefined, { duration: 4000 });
           snackBarRef.onAction().subscribe(() => {
             // TODO リストアAPI
           });

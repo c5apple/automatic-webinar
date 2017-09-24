@@ -54,11 +54,7 @@ class webinarAction extends Action {
       $webinar = $this->webinar->select();
     }
 
-    if ($webinar) {
-      echo json_encode($webinar);
-    } else {
-      return parent::notFound();
-    }
+    echo json_encode($webinar);
   }
 
   /**
