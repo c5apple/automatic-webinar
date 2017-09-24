@@ -10,6 +10,7 @@ import { MyMaterialModule } from 'shared/module';
 import { HeaderModule, FooterModule, LoadingModule } from 'shared/component';
 import { LoginModule } from 'app/login/login.module';
 import { LoadingService, AuthGuard } from 'shared/service';
+import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoadingService, AuthGuard } from 'shared/service';
     LoadingModule,
     HeaderModule,
     FooterModule,
-    LoginModule
+    LoginModule,
+    PageNotFoundModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

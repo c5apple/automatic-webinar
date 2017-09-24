@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from 'shared/service';
 
 const routes: Routes = [
@@ -10,7 +11,7 @@ const routes: Routes = [
   // { path: 'login', component: LoginComponent },
   // { path: 'logout', component: LogoutComponent },
   { path: 'a', loadChildren: './admin/admin.module#AdminModule', canActivate: [AuthGuard] },
-  // { path: '**', component: PageNotFoundComponent, pathMatch: 'full' }
+  { path: '**', component: PageNotFoundComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
