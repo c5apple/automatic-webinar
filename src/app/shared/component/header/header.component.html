@@ -5,8 +5,8 @@
         <a routerLink="/a" md-button><span>Automatic</span><span>Webinar</span></a>
       </div>
 
-      <!-- TODO ログイン前 -->
-      <div class="menu">
+      <!-- ログイン前のみ表示 -->
+      <div class="menu" *ngIf="isLoggedIn">
         <button md-icon-button [mdMenuTriggerFor]="menu">
           <md-icon>more_vert</md-icon>
         </button>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+import { AuthService } from 'shared/service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  /** ログイン状態か */
+  isLoggedIn: boolean;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isLoggedIn = this.authService.authenticated();
+      }
+    });
   }
 
 }
