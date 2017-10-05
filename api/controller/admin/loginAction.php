@@ -6,7 +6,7 @@ require_once('./model/dao/session.php');
 /**
  * ログインAPI
  */
-class loginAction extends Action {
+class loginAction extends AdminAction {
 
   protected $account;
   protected $session;

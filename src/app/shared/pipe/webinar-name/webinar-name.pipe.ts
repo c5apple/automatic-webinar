@@ -14,7 +14,7 @@ export class WebinarNamePipe implements PipeTransform {
   value: any;
 
   constructor(private webinarService: WebinarService) {
-    this.webinarService.getWebinar().subscribe((webinars: Webinar[]) => {
+    this.webinarService.getWebinar(undefined, true).subscribe((webinars: Webinar[]) => {
       this.webinars = webinars;
 
       this.apiCall = Observable.create(observer => {

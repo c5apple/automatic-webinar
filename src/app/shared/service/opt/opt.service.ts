@@ -16,7 +16,7 @@ export class OptService extends ApiService {
    * @param optId オプトID
    */
   public getOpt(optId?: number): Observable<Opt | Opt[]> {
-    const url = '/api/opt';
+    const url = '/api/a/opt';
     const params = {
       id: optId
     };
@@ -32,7 +32,7 @@ export class OptService extends ApiService {
    * オプトを登録/更新する
    */
   public saveOpt(opt: OptInputForm): Observable<any> {
-    const url = '/api/opt';
+    const url = '/api/a/opt';
     const params = {
       id: opt.id,
       webinarId: opt.webinarId,
@@ -55,7 +55,7 @@ export class OptService extends ApiService {
    * @param optIds オプトIDリスト
    */
   public deleteOpt(optIds: number[]): Observable<any> {
-    const url = `/api/opt`;
+    const url = `/api/a/opt`;
     const params = {
       id: optIds
     };

@@ -10,19 +10,27 @@ import { WebinarInputForm } from '../../../admin/webinar/webinar-input/webinar-i
  */
 @Injectable()
 export class WebinarService extends ApiService {
+  private webinars: Webinar[];
 
   /**
    * ウェビナーを取得する
    * @param webinarId ウェビナーID
    */
-  public getWebinar(webinarId?: number): Observable<Webinar | Webinar[]> {
-    const url = '/api/webinar';
+  public getWebinar(webinarId?: number, useCache?: boolean): Observable<Webinar | Webinar[]> {
+    // キャッシュ利用
+    if (useCache && webinarId === undefined && this.webinars) {
+      return Observable.of(this.webinars);
+    }
+
+    // API実行
+    const url = '/api/a/webinar';
     const params = {
       id: webinarId
     };
     return this.get(url, params).map((data: Webinar | Webinar[]) => {
       if ('length' in data) {
-        return Array.from((data as Webinar[])).map(row => new Webinar(row));
+        this.webinars = Array.from((data as Webinar[])).map(row => new Webinar(row));
+        return this.webinars;
       }
       return new Webinar(data);
     });
@@ -32,7 +40,11 @@ export class WebinarService extends ApiService {
    * ウェビナーを登録/更新する
    */
   public saveWebinar(webinar: WebinarInputForm): Observable<any> {
-    const url = '/api/webinar';
+    // キャッシュクリア
+    this.webinars = undefined;
+
+    // API実行
+    const url = '/api/a/webinar';
     return this.post(url, webinar);
   }
 
@@ -41,7 +53,11 @@ export class WebinarService extends ApiService {
    * @param webinarIds ウェビナーIDリスト
    */
   public deleteWebinar(webinarIds: number[]): Observable<any> {
-    const url = `/api/webinar`;
+    // キャッシュクリア
+    this.webinars = undefined;
+
+    // API実行
+    const url = `/api/a/webinar`;
     const params = {
       id: webinarIds
     };
