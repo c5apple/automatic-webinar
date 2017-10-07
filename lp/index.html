@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AutomaticWebinar</title>
+  <meta name="description" content="ウェビナー開催にあたり集客から成約までを自動化したシステムをご提供します">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.css">
+</head>
+
+<body>
+
+  <!--main-->
+  <section class="main">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <!--logo-->
+          <div class="logo"><img src="/lp/img/logo.png" alt="AutomaticWebinar"></div>
+          <!--logo end-->
+        </div>
+        <div class="col-md-6 col-sm-6">
+
+          <!--social-->
+          <div class="social text-center">
+            <ul>
+              <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+          <!--social end-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+
+          <!--welcome-message-->
+          <header class="welcome-message text-center">
+            <h1><span class="rotate">
+              ウェビナー自動化システム,
+              オプトリスト管理を簡単に,
+              希望に合わせたステップメール,
+              公開日までのタイマー機能,
+              次のフォームよりお申込みください
+            </span></h1>
+          </header>
+          <!--welcome-message end-->
+
+          <!--sub-form-->
+          <div class="sub-form">
+            <div class="row">
+              <div class="col-md-6 center-block col-sm-9 col-xs-11 container">
+                <form role="form" id="aw-form" action="/api/opt" method="POST">
+                  <input type="hidden" name="webinarId" value="1">
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">メールアドレス</label>
+                    <div class="col-sm-8">
+                      <input type="email" class="form-control" placeholder="Email" required value="" name="mail">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">希望日</label>
+                    <div class="col-sm-8">
+                      <div class="input-group">
+                        <select class="form-control" id="preferredDate" name="preferredDate" required>
+                        </select>
+                        <span class="input-group-btn">
+                          <button type="submit" class="btn btn-default" id="aw-subscribe" value="Subscribe" name="subscribe">Submit<i class="fa fa-paper-plane"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <p id="aw-notification" class="text-center"></p>
+                <p id="aw-success" style="display:none">
+                  <span class="success"><i class="fa fa-envelope"></i>お申込みありがとうございます。</span>
+                </p>
+                <p id="aw-error" style="display:none">
+                  <span class="alert">サーバーに接続できませんでした。後でもう一度お試しください。</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--sub-form end-->
+
+          <!-- Countdown-->
+          <ul class="countdown text-center">
+            <li> <span class="days">00</span>
+              <p class="days_ref">days</p>
+            </li>
+            <li class="seperator">|</li>
+            <li> <span class="hours">00</span>
+              <p class="hours_ref">hours</p>
+            </li>
+            <li class="seperator">|</li>
+            <li> <span class="minutes">00</span>
+              <p class="minutes_ref">minutes</p>
+            </li>
+            <li class="seperator">|</li>
+            <li> <span class="seconds">00</span>
+              <p class="seconds_ref">seconds</p>
+            </li>
+          </ul>
+          <!-- <span id="countdownLimit" style="display:none">7/24/2020 20:00:00</span> -->
+          <span id="countdown-limit" style="display:none">7/24/2020 20:00:00</span>
+          <div class="countdown-end" style="display:none">
+            お申し込みは終了しました。
+          </div>
+          <!-- Countdown end-->
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--main end-->
+
+  <!--Features-->
+
+  <section class="features section-spacing">
+    <div class="container">
+      <h2 class="text-center">Featered services</h2>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="wow fadeInUp product-features row">
+            <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-envelope-o fa-3x"></i></div>
+            <div class="col-md-10 col-sm-10 col-xs-10">
+              <!--features 1-->
+              <h4>オプトリスト収集</h4>
+              <p>お客様にメールアドレスと希望日をお申込みフォームより入力していただきます。管理システムで各ウェビナーごとに分けられたデータを参照でき、かつ希望日に合わせたステップメールを配信することが可能となります。</p>
+              <br>
+              <p>希望日のセレクトボックスにはページを見た日から3日後～5日後の日付を選択できます。</p>
+              <p>例えば、10月1日にページを見ると「10月4日」「10月5日」「10月6日」がリスト表示されます。</p>
+              <br>
+              <h5>使い方</h5>
+              <h6>1.ランディングページhtmlへの反映方法</h6>
+              <p>フォームに必要なコードを示します。タグの入れ替えやclassは自由に書いてOKですので、ランディングページのイメージに合わせたカスタマイズが可能です。</p>
+              <br>
+              <p>★1 ... APIのURLを書いてください。(/api/opt は必須です)</p>
+              <p>★2 ... AutomaticWebinar管理システムで作成したウェビナーIDを書いてください。</p>
+              <pre class="prettyprint linenums"><code class="lang-html">&lt;form role="form" id="aw-form" action="★1/api/opt" method="POST"&gt;
+  &lt;!-- ウェビナーID --&gt;
+  &lt;input type="hidden" name="webinarId" value="★2"&gt;
+  &lt;!-- メールアドレス --&gt;
+  &lt;input type="email" required value="" name="mail"&gt;
+  &lt;!-- 希望日 --&gt;
+  &lt;select id="preferredDate" name="preferredDate" required&gt;&lt;/select&gt;
+  &lt;!-- 登録ボタン --&gt;
+  &lt;button type="submit" id="aw-subscribe"&gt;お申込み&lt;/button&gt;
+&lt;/form&gt;
+&lt;!-- メッセージ表示エリア --&gt;
+&lt;p id="aw-notification"&gt;&lt;/p&gt;
+&lt;p id="aw-success" style="display:none"&gt;
+  お申込みありがとうございます。★3
+&lt;/p&gt;
+&lt;p id="aw-error" style="display:none"&gt;
+  サーバーに接続できませんでした。後でもう一度お試しください。★3
+&lt;/p&gt;
+</code></pre>
+              <br>
+              <p>bodyタグの直前に次のスクリプトを埋め込んでください。</p>
+              <pre class="prettyprint linenums"><code class="lang-html">  &lt;script async src="js/automatic-webinar.js"&gt;&lt;/script&gt;
+&lt/body&gt;</code></pre>
+              <br>
+              <h6>2.メッセージのカスタマイズ</h6>
+              <p>★3 ... メッセージのHTMLを書いてください。中にタグ追加やclassは自由に書いてOKです。</p>
+              <p>本デモページでは次のようにカスタマイズしていますので参考にしてください。</p>
+              <pre class="prettyprint linenums"><code class="lang-html">&lt;p id="aw-success" style="display:none"&gt;
+  &lt;span class="success"&gt;&lt;i class="fa fa-envelope"&gt;&lt;/i&gt;お申込みありがとうございます。&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+              <!--features 1 end-->
+            </div>
+          </div>
+          <div class="wow fadeInUp product-features row">
+            <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-clock-o fa-3x"></i></div>
+            <div class="col-md-10 col-sm-10 col-xs-10">
+              <!--features 2-->
+              <h4>ウェビナー時限式オープン</h4>
+              <p>AutomaticWebinarはタイマー機能を提供します。次のことが簡単に表現できます。</p>
+              <p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 申し込み期間終了まであとxx時間！</p>
+              <p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> ウェビナーはあとxx分で始まります！</p>
+              <br>
+              <h5>使い方</h5>
+              <h6>1.ランディングページhtmlおよびウェビナーページhtmlへの反映方法</h6>
+              <p>タイマーに必要なコードを示します。タグの入れ替えやclassは自由に書いてOKですので、イメージに合わせたカスタマイズが可能です。</p>
+              <br>
+              <p>★4 ... 残り時間を表示するためのhtmlを書いてください。後ほどサンプルを提示します。</p>
+              <p>★5 ... 期日を書いてください。「月/日/年 時間:分:秒」のフォーマットであることに注意してください。</p>
+              <p>★6 ... 期日が来たら表示するhtmlを書いてください。★4は消えて★6が表示される形となります。</p>
+              <pre class="prettyprint linenums"><code class="lang-html">&lt;!-- カウントダウン表示エリア --&gt;
+&lt;div class="countdown"&gt;
+  ★4
+  &lt;!-- 残り日数 --&gt;
+  &lt;span class="days"&gt;00&lt;/span&gt;
+  &lt;!-- 残り時間数 --&gt;
+  &lt;span class="hours"&gt;00&lt;/span&gt;
+  &lt;!-- 残り分数 --&gt;
+  &lt;span class="minutes"&gt;00&lt;/span&gt;
+  &lt;!-- 残り秒数 --&gt;
+  &lt;span class="seconds"&gt;00&lt;/span&gt;秒
+&lt;/div&gt;
+
+&lt;!-- 期日設定 --&gt;
+&lt;span id="countdown-limit" style="display:none"&gt;7/24/2020 20:00:00 ★5&lt;/span&gt;
+
+&lt;!-- カウントダウン到達後の表示エリア --&gt;
+&lt;div class="countdown-end" style="display:none"&gt;
+  お申し込みは終了しました。★6
+&lt;/div&gt;</code></pre>
+              <br>
+              <p>bodyタグの直前に次のスクリプトを埋め込んでください。※すでにある場合は不要です</p>
+              <pre class="prettyprint linenums"><code class="lang-html">  &lt;script async src="js/automatic-webinar.js"&gt;&lt;/script&gt;
+&lt/body&gt;</code></pre>
+              <br>
+              <h6>2.カウントダウン表示エリアのカスタマイズ</h6>
+              <p>★4 のカスタマイズ例を提示します。</p>
+              <p>「お申込み終了まであとxx日とxx時間xx分xx秒」と画面上部に表示される例です。</p>
+              <pre class="prettyprint linenums"><code class="lang-html">&lt;div class="countdown"&gt;
+  &lt;div style="position:fixed;left:0;right:0;top:0;color:#FFF;background-color:#028"&gt;
+    お申し込み終了まで&lt;span class="days"&gt;00&lt;/span&gt;日と&lt;span class="hours"&gt;00&lt;/span&gt;時間&lt;span class="minutes"&gt;00&lt;/span&gt;分&lt;span class="seconds"&gt;00&lt;/span&gt;秒
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+              <br>
+              <p>★6 のカスタマイズも同様にhtmlを好きなように書いてください。</p>
+              <p>メッセージ、購入フォーム、Youtube、などなど。</p>
+              <!--features 2 end-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Features end-->
+
+  <!--site-footer-->
+  <footer class="site-footer section-spacing">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+
+          <!--social-->
+
+          <ul class="social">
+            <li class="wow fadeInUp"><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li class="wow fadeInUp"><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li class="wow fadeInUp"><a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+          </ul>
+
+          <!--social end-->
+
+          <small class="wow fadeInUp">Copyright © 2017 AutomaticWebinar All Rights Reserved.</small> </div>
+      </div>
+    </div>
+  </footer>
+  <!--site-footer end-->
+
+  <!--PRELOAD-->
+  <div id="preloader">
+    <div id="status"></div>
+  </div>
+  <!--end PRELOAD-->
+
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/jquery.backstretch.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/retina.min.js"></script>
+  <script src="js/jquery.downCount.js"></script>
+  <script src="js/jquery.form.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/jquery.simple-text-rotator.min.js"></script>
+  <script src="js/main.js"></script>
+  <script async src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script async src="js/automatic-webinar.js"></script>
+</body>
+
+</html>
