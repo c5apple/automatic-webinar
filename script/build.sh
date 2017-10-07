@@ -20,3 +20,4 @@ done
 # Copy Other File!!
 cp api/.htaccess dist/api/.
 cp -r api/bin dist/api/.
+cp src/.htaccess src/robots.txt dist/.
