@@ -19,27 +19,48 @@ try {
   $do = filter_input(INPUT_GET, 'do');
 
   // GETパラメータ解析
-  $dos = explode('/', $do);
-  switch (count($dos)) {
+  $dos      = explode('/', $do);
+  $dosCount = count($dos);
+  switch ($dosCount) {
     case 1:
       $dir = '';
       $cls = ($dos[0] ?: 'index') . 'Action';
       $mtd = $dos[0] ?: 'index';
       break;
     case 2:
-      $dir = '';
-      $cls = ($dos[0] ?: 'index') . 'Action';
-      $mtd = $dos[1] ?: 'index';
+      if ($dos[0] === 'a') {
+        $dir = 'admin/';
+        $cls = ($dos[1] ?: 'index') . 'Action';
+        $mtd = $dos[1] ?: 'index';
+      } else {
+        $dir = '';
+        $cls = ($dos[0] ?: 'index') . 'Action';
+        $mtd = $dos[1] ?: 'index';
+      }
+      break;
+    case 3:
+      if ($dos[0] === 'a') {
+        $dir = 'admin/';
+        $cls = ($dos[1] ?: 'index') . 'Action';
+        $mtd = $dos[2] ?: 'index';
+      } else {
+        // 404エラー
+        header("HTTP/1.0 404 Not Found");
+        Logger::logs(ERROR, '404 not found[ ' . $do . ' ]', '');
+        exit;
+      }
       break;
     default:
-      $dir = $dos[0] . '/';
-      $cls = $dos[1] . 'Action';
-      $mtd = $dos[2] ?: 'index';
+      // 404エラー
+      header("HTTP/1.0 404 Not Found");
+      Logger::logs(ERROR, '404 not found[ ' . $do . ' ]', '');
+      exit;
       break;
   }
 
   // アクションクラス読み込み
   require_once('./controller/action.php');
+  require_once('./controller/admin/adminAction.php');
   if (file_exists('./controller/' . $dir . $cls . '.php')) {
     require_once('./controller/' . $dir . $cls . '.php');
   }

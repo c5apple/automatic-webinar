@@ -5,7 +5,7 @@ require_once('./model/dao/account.php');
 /**
  * アカウントAPI
  */
-class accountAction extends Action {
+class accountAction extends AdminAction {
 
   private $account;
 

@@ -5,7 +5,7 @@ require_once('./model/dao/session.php');
 /**
  * ログアウトAPI
  */
-class logoutAction extends Action {
+class logoutAction extends AdminAction {
 
   protected $session;
 
