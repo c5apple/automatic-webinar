@@ -148,7 +148,12 @@ export class OptListComponent implements OnInit {
       return;
     }
     const header = [Object.keys(this.database.data[0]).join(',')];
-    const body = this.database.data.map((opt, index) => Object.values(new Opt(opt)).join(','));
+    const body = this.database.data.map((opt, index) => {
+      const record = Object.values(new Opt(opt));
+      // 希望日をY/m/d形式に変換する
+      record[3] = this.formatYmd(opt.preferredDate);
+      return record.join(',');;
+    });
     const data = Array.prototype.concat(header, body).join('\r\n');
 
     const blob = new Blob([this.encode(data)], { type: 'text/csv' });
@@ -165,6 +170,16 @@ export class OptListComponent implements OnInit {
       document.body.removeChild(a);
     }
     window.URL.revokeObjectURL(url);
+  }
+
+  /**
+   * Date -> Y/m/d
+   */
+  private formatYmd(val: Date): string {
+    const y = `${val.getFullYear()}`;
+    const m = `0${val.getMonth() + 1}`.slice(-2);
+    const d = `0${val.getDate()}`.slice(-2);
+    return `${y}/${m}/${d}`;
   }
 
   /**
