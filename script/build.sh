@@ -16,3 +16,7 @@ do
   mkdir -p dist/${DIRNAME}
   echo ${OBFUSCATED} > dist/${DIRNAME}/${FILENAME}
 done
+
+# Copy Other File!!
+cp api/.htaccess dist/api/.
+cp -r api/bin dist/api/.
