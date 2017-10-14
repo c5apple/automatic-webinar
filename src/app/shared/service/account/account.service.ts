@@ -16,7 +16,7 @@ export class AccountService extends ApiService {
    * アカウントを取得する
    */
   public getAccount(): Observable<Account> {
-    const url = '/api/a/account';
+    const url = './api/a/account';
     return this.get(url).map(data => data as Account);
   }
 
@@ -25,7 +25,7 @@ export class AccountService extends ApiService {
    * @param account アカウント情報
    */
   public saveAccount(account: AccountInputForm): Observable<any> {
-    const url = '/api/a/account';
+    const url = './api/a/account';
     return this.post(url, account);
   }
 
@@ -34,7 +34,7 @@ export class AccountService extends ApiService {
    * @param account アカウント情報
    */
   public updatePassword(account: AccountPasswordForm) {
-    const url = '/api/a/account/password';
+    const url = './api/a/account/password';
     return this.post(url, account);
   }
 }

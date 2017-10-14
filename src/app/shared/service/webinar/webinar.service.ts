@@ -23,7 +23,7 @@ export class WebinarService extends ApiService {
     }
 
     // API実行
-    const url = '/api/a/webinar';
+    const url = './api/a/webinar';
     const params = {
       id: webinarId
     };
@@ -44,7 +44,7 @@ export class WebinarService extends ApiService {
     this.webinars = undefined;
 
     // API実行
-    const url = '/api/a/webinar';
+    const url = './api/a/webinar';
     return this.post(url, webinar);
   }
 
@@ -57,7 +57,7 @@ export class WebinarService extends ApiService {
     this.webinars = undefined;
 
     // API実行
-    const url = `/api/a/webinar`;
+    const url = `./api/a/webinar`;
     const params = {
       id: webinarIds
     };

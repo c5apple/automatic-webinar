@@ -1,4 +1,6 @@
 <?php
+// ビルド時にはコメントアウトする。TODO configを別ファイルに定義する
+define('BASE_DIR', '/automatic-webinar/api/');
 
 date_default_timezone_set('Asia/Tokyo');
 
@@ -7,8 +9,6 @@ try {
   header('content-type: application/json; charset=utf-8');
   header('X-Content-Type-Options : nosniff');
   header_remove('X-Powered-By');
-
-  define('BASE_DIR', '/automatic-webinar/api/');
 
   require_once('./service/cipher.php');
   require_once('./service/filer.php');
