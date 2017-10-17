@@ -89,7 +89,7 @@ class StringUtil {
    * 連想配列のキーをキャメルケースに変換します
    */
   public static function camelizeArrayRecursive(array $arr) {
-    $results = [];
+    $results = array();
     foreach ($arr as $key => $value) {
       if (is_array($value)) {
         $results[self::camelize($key)] = camelizeArrayRecursive($value);
@@ -111,7 +111,7 @@ class StringUtil {
    * 連想配列のキーをスネークケースに変換します
    */
   public static function snakizeArrayRecursive(array $arr) {
-    $results = [];
+    $results = array();
     foreach ($arr as $key => $value) {
       if (is_array($value)) {
         $results[self::snakize($key)] = snakizeArrayRecursive($value);
