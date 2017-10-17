@@ -12,7 +12,8 @@ $(function () {
     var y = now.getFullYear();
     var m = `0${now.getMonth() + 1}`.slice(-2);
     var d = `0${now.getDate()}`.slice(-2);
-    $form.find('#preferredDate').append(`<option value="${y}${m}${d}">${y}/${m}/${d}</option>`);
+    var w = ["日", "月", "火", "水", "木", "金", "土"][now.getDay()];
+    $form.find('#preferredDate').append(`<option value="${y}${m}${d}">${y}/${m}/${d}(${w})</option>`);
   }
 
   $('#aw-subscribe').on('click', function (event) {
