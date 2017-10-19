@@ -1,4 +1,3 @@
-
 /* AutomaticWebinar(v1.0.0) */
 $(function () {
   "use strict";
@@ -31,12 +30,17 @@ $(function () {
       $('#aw-notification').hide().html(errorMessage).fadeIn("slow");
     });
   }
-
-  $('.countdown').downCount({
-    date: $('#countdown-limit').text(), // m/d/y
-    offset: 9
-  }, function () {
+  if (new Date().getTime() < new Date($('#countdown-end-limit').text()).getTime()) {
+    $('.countdown').downCount({
+      date: $('#countdown-limit').text(), // m/d/y
+      offset: 9
+    }, function () {
+      $('.countdown').hide();
+      $('.countdown-open').show('slow');
+    });
+  } else {
     $('.countdown').hide();
+    $('.countdown-open').hide();
     $('.countdown-end').show('slow');
-  });
+  }
 });

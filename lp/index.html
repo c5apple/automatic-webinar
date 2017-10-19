@@ -111,8 +111,12 @@
           </ul>
           <!-- <span id="countdownLimit" style="display:none">7/24/2020 20:00:00</span> -->
           <span id="countdown-limit" style="display:none">7/24/2020 20:00:00</span>
-          <div class="countdown-end" style="display:none">
+          <span id="countdown-end-limit" style="display:none">8/9/2020 23:59:59</span>
+          <div class="countdown-open" style="display:none">
             お申し込みは終了しました。
+          </div>
+          <div class="countdown-end" style="display:none">
+            お申し込みは本当に終了しました。
           </div>
           <!-- Countdown end-->
 
@@ -184,6 +188,7 @@
               <!--features 2-->
               <h4>ウェビナー時限式オープン</h4>
               <p>AutomaticWebinarはタイマー機能を提供します。次のことが簡単に表現できます。</p>
+              <br>
               <p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 申し込み期間終了まであとxx時間！</p>
               <p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> ウェビナーはあとxx分で始まります！</p>
               <br>
@@ -194,6 +199,9 @@
               <p>★4 ... 残り時間を表示するためのhtmlを書いてください。後ほどサンプルを提示します。</p>
               <p>★5 ... 期日を書いてください。「月/日/年 時間:分:秒」のフォーマットであることに注意してください。</p>
               <p>★6 ... 期日が来たら表示するhtmlを書いてください。★4は消えて★6が表示される形となります。</p>
+              <p>★7 ... ★6を表示する期日を書いてください。「月/日/年 時間:分:秒」のフォーマットであることに注意してください。</p>
+              <p>これによりウェビナー動画の表示期間を設定することが可能となります。</p>
+              <p>★8 ... 期日が来たら表示するhtmlを書いてください。★4,★6が消えて★8が表示される形となります。</p>
               <pre class="prettyprint linenums"><code class="lang-html">&lt;!-- カウントダウン表示エリア --&gt;
 &lt;div class="countdown"&gt;
   ★4
@@ -211,8 +219,15 @@
 &lt;span id="countdown-limit" style="display:none"&gt;7/24/2020 20:00:00 ★5&lt;/span&gt;
 
 &lt;!-- カウントダウン到達後の表示エリア --&gt;
-&lt;div class="countdown-end" style="display:none"&gt;
+&lt;div class="countdown-open" style="display:none"&gt;
   お申し込みは終了しました。★6
+&lt;/div&gt;
+
+&lt;!-- 期日設定その2 --&gt;
+&lt;span id="countdown-end-limit" style="display:none"&gt;8/9/2020 23:59:59 ★7&lt;/span&gt;
+&lt;!-- 期日設定その2到達後の表示エリア --&gt;
+&lt;div class="countdown-end" style="display:none"&gt;
+  お申し込みは本当に終了しました。★8
 &lt;/div&gt;</code></pre>
               <br>
               <p>bodyタグの直前に次のスクリプトを埋め込んでください。※すでにある場合は不要です</p>
@@ -228,8 +243,11 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               <br>
-              <p>★6 のカスタマイズも同様にhtmlを好きなように書いてください。</p>
+              <p>★6,★8 のカスタマイズも同様にhtmlを好きなように書いてください。</p>
               <p>メッセージ、購入フォーム、Youtube、などなど。</p>
+              <br>
+              <h6>3.お申込みフォームカウントダウンの例</h6>
+              <p>★5,★6 のカスタマイズ例を提示します。</p>
               <!--features 2 end-->
             </div>
           </div>
@@ -278,7 +296,7 @@
   <script src="js/jquery.simple-text-rotator.min.js"></script>
   <script src="js/main.js"></script>
   <script async src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-  <script async src="js/automatic-webinar.min.js"></script>
+  <script async src="js/automatic-webinar.js"></script>
 </body>
 
 </html>
