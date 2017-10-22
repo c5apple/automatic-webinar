@@ -1,4 +1,4 @@
-/* AutomaticWebinar(v1.0.0) */
+/* AutomaticWebinar(v1.1.1) */
 $(function () {
   "use strict";
   var $form = $('#aw-form');
@@ -8,11 +8,12 @@ $(function () {
   now.setDate(now.getDate() + offset);
   for (var i = 0; i < 3; i++) {
     now.setDate(now.getDate() + 1);
-    var y = now.getFullYear();
-    var m = `0${now.getMonth() + 1}`.slice(-2);
-    var d = `0${now.getDate()}`.slice(-2);
+    var y = now.getFullYear() + '';
+    var m = ('0' + (now.getMonth() + 1)).slice(-2);
+    var d = ('0' + now.getDate()).slice(-2);
     var w = ["日", "月", "火", "水", "木", "金", "土"][now.getDay()];
-    $form.find('#preferredDate').append(`<option value="${y}${m}${d}">${y}/${m}/${d}(${w})</option>`);
+    $form.find('#preferredDate').append(
+      '<option value="' + y + m + d + '">' + y + '/' + m + '/' + d + '(' + w + ')</option>');
   }
 
   $('#aw-subscribe').on('click', function (event) {
