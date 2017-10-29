@@ -21,6 +21,3 @@ done
 cp api/.htaccess dist/api/.
 cp -r api/bin dist/api/.
 cp src/.htaccess src/robots.txt dist/.
-
-# for BASE_DIR
-cat dist/api/index.php | sed -e "s/<?php/<?php define('BASE_DIR', '\/api\/');/g" > dist/api/index.php
