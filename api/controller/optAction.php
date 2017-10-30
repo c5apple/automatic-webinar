@@ -43,33 +43,23 @@ class optAction extends Action {
       return parent::badRequest();
     }
 
-    if ($opt_id && is_numeric($opt_id)) {
-      $set   = array(
-          'webinar_id'     => $webinar_id,
-          'mail'           => StringUtil::toStr($mail),
-          'preferred_date' => StringUtil::toStr($preferred_date),
-      );
-      $where = array(
-          'id' => $opt_id
-      );
+    $value = array(
+        'id'             => 'NULL',
+        'webinar_id'     => $webinar_id,
+        'mail'           => StringUtil::toStr($mail),
+        'preferred_date' => StringUtil::toStr($preferred_date),
+    );
 
-      // 更新
-      $ret = $this->opt->update($set, $where);
-    } else {
-      $value = array(
-          'id'             => 'NULL',
-          'webinar_id'     => $webinar_id,
-          'mail'           => StringUtil::toStr($mail),
-          'preferred_date' => StringUtil::toStr($preferred_date),
-      );
-
-      // 登録
-      $ret = $this->opt->insert($value);
-      if ($ret) {
-        $opt_id = $this->opt->getQuery()->getLastInsertId();
-      }
+    // オプト登録
+    $ret = $this->opt->insert($value);
+    if ($ret) {
+      $opt_id = $this->opt->getQuery()->getLastInsertId();
     }
-
+    if ($ret) {
+      // Thanksメール送信
+      $mailer = new Mail();
+      $ret    = $mailer->send($mail);
+    }
     if ($ret) {
       echo json_encode($opt_id);
     } else {

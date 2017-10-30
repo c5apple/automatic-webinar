@@ -8,9 +8,12 @@ try {
   header_remove('X-Powered-By');
 
   require_once('./bin/config/define.php');
+  require_once('./lib/qdmail.php');
+  require_once('./lib/qdsmtp.php');
   require_once('./service/cipher.php');
   require_once('./service/filer.php');
   require_once('./service/logger.php');
+  require_once('./service/mail.php');
   require_once('./service/stringUtil.php');
   require_once('./model/queryExecuter.php');
 
