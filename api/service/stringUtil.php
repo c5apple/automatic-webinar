@@ -40,6 +40,21 @@ class StringUtil {
   }
 
   /**
+   * YYYYMMDDをDate型に変換する
+   *
+   * @param format フォーマット
+   * @param $yyyymmdd
+   * @return date
+   */
+  static public function formatYmd($format, $yyyymmdd) {
+    if (!is_numeric($yyyymmdd)) {
+      return date();
+    }
+    $ymd = self::left($yyyymmdd, 4) . '-' . mb_substr($yyyymmdd, 4, 2, 'UTF-8') . '-' . self::right($yyyymmdd, 2);
+    return date($format, strtotime($ymd));
+  }
+
+  /**
    * Right関数
    *
    * 右からn文字を取得します。

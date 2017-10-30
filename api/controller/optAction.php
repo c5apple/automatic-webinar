@@ -58,7 +58,7 @@ class optAction extends Action {
     if ($ret) {
       // Thanksメール送信
       $mailer = new Mail();
-      $ret    = $mailer->send($mail);
+      $ret    = $mailer->send($mail, $preferred_date);
     }
     if ($ret) {
       echo json_encode($opt_id);
