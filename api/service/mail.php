@@ -49,7 +49,7 @@ class Mail {
     // 本文整形
     $week           = array('日', '月', '火', '水', '木', '金', '土');
     $preferred_date = StringUtil::formatYmd('Y年m月d日', $preferred_date) . '(' . $week[StringUtil::formatYmd('w', $preferred_date)] . ')';
-    $body           = str_replace('{PREFERRED_DATE}', $preferred_date, Filer::fileGetContents('bin/config/thanks.txt'));
+    $body           = mb_ereg_replace('{PREFERRED_DATE}', $preferred_date, Filer::fileGetContents('bin/config/thanks.txt'));
 
     // メール作成
     $this->mail->to($to);                               // 宛先
