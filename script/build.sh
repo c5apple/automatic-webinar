@@ -2,7 +2,7 @@
 
 rm -rf dist/api
 mkdir -p dist/api
-FILES=`find ./api -type f -name "*.php"`
+FILES=`find ./api -type d -name lib -prune -o -type f -name "*.php" -print`
 for FILE in ${FILES}
 do
   # Obfuscate!!
@@ -20,4 +20,5 @@ done
 # Copy Other File!!
 cp api/.htaccess dist/api/.
 cp -r api/bin dist/api/.
+cp -r api/lib dist/api/.
 cp src/.htaccess src/robots.txt dist/.
