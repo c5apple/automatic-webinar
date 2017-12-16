@@ -78,7 +78,7 @@ $(function () {
     var openDatetime = Date.parse($this.attr('data-open-datetime'));
     var openOffsettime = Number($this.attr('data-open-offsettime'));
     var openOffsetlate = Boolean($this.attr('data-open-offsetlate'));
-    var $closeTarget = $($this.attr('data-close-target'));
+    var closeTarget = $this.attr('data-close-target');
     var open;
 
     if (isNaN(openDatetime) && isNaN(openOffsettime)) {
@@ -108,8 +108,8 @@ $(function () {
       offset: 9
     }, function () {
       showTag($this);
-      if ($closeTarget.length > 0) {
-        $closeTarget.remove();
+      if ($(closeTarget).length > 0) {
+        $(closeTarget).remove();
       }
     });
   });
