@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=640px">
+  <link rel="stylesheet" href="css/reset.css" type="text/css">
+  <link rel="stylesheet" type="text/css" media="screen and (min-width: 641px)" href="css/style.css">
+  <link rel="stylesheet" type="text/css" media="screen and (max-width: 640px)" href="css/style2.css">
+  <meta name="description" content="面倒なサポートは一切不要！ 顧客に感謝されながら、半永久的に売上を積み上げていけるもう一つの収入の柱が手に入り
+ます。">
+  <meta name="keywords" content="積み上げ式ビジネス資産構築法">
+  <title>積み上げ式ビジネス資産構築法 無料オンライン説明会</title>
+</head>
+
+<body oncontextmenu="return false;">
+
+  <article>
+    <div id="contents_wrap">
+      <div id="wrap">
+
+        <div class="cont mb30">
+          <img src="images/top.png">
+        </div>
+
+
+        <article class="con00">
+          <!-- 公開前の表示 -->
+          <div class="countdown" style="text-align:center;">
+            <img src="images/thumbnail.png" width="560" height="315">
+            <div>
+              公開まで
+              <span class="days">00</span>日と
+              <span class="hours">00</span>時間
+              <span class="minutes">00</span>分
+              <span class="seconds">00</span>秒
+            </div>
+          </div>
+
+
+          <!-- 公開開始日時 -->
+          <span id="countdown-limit" style="display:none">12/17/2017 20:00:00</span>
+          <!-- 公開終了日時 -->
+          <span id="countdown-end-limit" style="display:none">12/17/2017 22:00:00</span>
+
+          <!-- 公開中に表示する内容 ここから -->
+          <template class="countdown-open" style="display:none">
+            <!-- セールス動画 -->
+            <div style="text-align:center; margin-top:20px;">
+              <!-- overlay -->
+              <div style="position:fixed; display:inline-block; width:560px; height:315px; background-color:transparent; z-index:9999;"></div>
+              <!-- 動画 -->
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/B0oaaCA6k6w?rel=0&modestbranding=1&showinfo=0&fs=0&controls=0&color=white&autoplay=1"
+                frameborder="0" allowfullscreen></iframe>
+            </div>
+          </template>
+          <!-- 公開中に表示する内容 ここまで -->
+
+
+          <!-- 終了後に表示する内容 ここから -->
+          <div class="countdown-end" style="display:none">
+
+            <div style="text-align:center;">
+              <p>セールス終了しましたHTML</p>
+              <img src="images/thumbnail.png" width="560" height="315">
+            </div>
+
+          </div>
+          <!-- 終了後に表示する内容 ここまで -->
+
+
+          <!-- 任意のタイミングで表示する内容 ここから -->
+          <template class="countdown-custom" data-open-datetime="12/17/2017 21:40:00" data-open-offsettime="6000" data-open-offsetlate="true">
+            <!--
+              お申し込みボタン
+              21:40または1時間40分(6000秒)後の遅いほうで表示する
+            -->
+            <div id="purchase-button" style="text-align:center;">
+              <img src="images/btn1.png">
+            </div>
+          </template>
+          <template class="countdown-custom" data-open-offsettime="259200" data-close-target="#purchase-button">
+            <!--
+              お申し込みボタンを3日後(259200秒)に非表示にする
+            -->
+            <div style="text-align:center;">セールス終了しましたHTML</div>
+          </template>
+          <!-- 任意のタイミングで表示する内容 ここまで -->
+
+          <footer>
+            <small>Copyright &#169; 積み上げ式ビジネス資産構築法 プロジェクトチーム All Rights Reserved. </small>
+          </footer>
+
+      </div>
+      <!-- end wrap -->
+    </div>
+    <!-- contents_wrap -->
+    </article>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.downCount.js"></script>
+    <!-- <script async src="js/automatic-webinar-1.2.0.min.js"></script> -->
+    <script async src="js/automatic-webinar-1.2.0.min.js"></script>
+
+</body>
+
+</html>

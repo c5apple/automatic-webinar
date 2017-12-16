@@ -1,4 +1,4 @@
-/* AutomaticWebinar(v1.1.1) */
+/* AutomaticWebinar(v1.2.0) */
 $(function () {
   "use strict";
   var $form = $('#aw-form');
@@ -31,7 +31,18 @@ $(function () {
       $('#aw-notification').hide().html(errorMessage).fadeIn("slow");
     });
   }
-  if (new Date().getTime() < new Date($('#countdown-end-limit').text()).getTime()) {
+  function getEndLimit() {
+    var countdownEndLimitStrage = localStorage.getItem('countdown-end-limit');
+    var countdownEndLimit = new Date($('#countdown-end-limit').text()).getTime();
+    if (countdownEndLimitStrage === null) {
+      var now = new Date();
+      now.setDate(now.getDate() + 3);
+      countdownEndLimitStrage = now.getTime();
+      localStorage.setItem('countdown-end-limit', countdownEndLimitStrage);
+    }
+    return Math.min(countdownEndLimitStrage, countdownEndLimit);
+  }
+  if (new Date().getTime() < getEndLimit()) {
     $('.countdown').downCount({
       date: $('#countdown-limit').text(), // m/d/y
       offset: 9
