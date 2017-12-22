@@ -41,14 +41,16 @@ $(function () {
       localStorage.setItem('view-datetime', now);
       viewDateTime = now;
     }
-    return viewDateTime;
+    return Number(viewDateTime);
   }
 
   /**
    * 非表示タグを表示する
    */
   function showTag($tag) {
-    if ($tag.get(0).tagName.toLowerCase() === 'template') {
+    if ($tag.length === 0) {
+      return;
+    } else if ($tag.get(0).tagName.toLowerCase() === 'template') {
       $tag.replaceWith(
         '<div id="' + $tag.get(0).id + '" class="' + $tag.get(0).className + '">' + $($tag.get(0)).html() + '</div>'
       );
@@ -58,7 +60,7 @@ $(function () {
   }
 
   // 公開開始日時から公開終了日時まで表示する
-  if (new Date().getTime() < new Date($('#countdown-end-limit').text()).getTime()) {
+  if (getViewDateTime() < new Date($('#countdown-end-limit').text()).getTime()) {
     $('.countdown').downCount({
       date: $('#countdown-limit').text(), // m/d/y
       offset: 9
@@ -86,13 +88,13 @@ $(function () {
       return;
     }
     if (isNaN(openDatetime)) {
-      open = new Date(Date.now() + openOffsettime * 1000); // ミリ秒->秒
+      open = new Date(getViewDateTime() + openOffsettime * 1000); // ミリ秒->秒
     } else if (isNaN(openOffsettime)) {
       open = new Date(openDatetime);
     } else {
       // 両方指定された場合
       var minOrMax = openOffsetlate ? Math.max : Math.min;
-      open = new Date(minOrMax(openDatetime, Date.now() + openOffsettime * 1000));
+      open = new Date(minOrMax(openDatetime, getViewDateTime() + openOffsettime * 1000));
     }
     var month = open.getMonth() + 1;
     var date = open.getDate();
