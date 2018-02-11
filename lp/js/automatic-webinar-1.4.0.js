@@ -12,7 +12,7 @@ $(function () {
     var m = ('0' + (now.getMonth() + 1)).slice(-2);
     var d = ('0' + now.getDate()).slice(-2);
     var w = ["日", "月", "火", "水", "木", "金", "土"][now.getDay()];
-    opt += '<option value="' + y + m + d + '">' + y + '/' + m + '/' + d + '(' + w + ')</option>';
+    opt += '<option value="' + y + m + d + '">' + y + '/' + m + '/' + d + '(' + w + ') 20時～</option>';
   }
   $('.preferredDate').each(function () {
     $(this).html(opt);
@@ -25,8 +25,15 @@ $(function () {
       // opt登録
       $.post($form.attr('action'), $form.serialize()
       ).done(function (data) {
-        var successMessage = $('.aw-success').html();
-        $('.aw-notification').hide().html(successMessage).fadeIn("slow");
+        var thanks = $form.attr('data-thanks');
+        if (thanks !== undefined && thanks !== '') {
+          // サンキューページに遷移
+          location.href = thanks;
+        } else {
+          // 完了メッセージを表示
+          var successMessage = $('.aw-success').html();
+          $('.aw-notification').hide().html(successMessage).fadeIn("slow");
+        }
       }).fail(function (err) {
         var errorMessage = $('.aw-error').html();
         $('.aw-notification').hide().html(errorMessage).fadeIn("slow");
