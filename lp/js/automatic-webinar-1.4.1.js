@@ -64,7 +64,7 @@ $(function () {
       return;
     } else if ($tag.get(0).tagName.toLowerCase() === 'template') {
       $tag.replaceWith(
-        '<div id="' + $tag.get(0).id + '" class="' + $tag.get(0).className + '">' + $($tag.get(0)).html() + '</div>'
+        '<div id="' + $tag.get(0).id + '" class="' + $tag.get(0).className + '">' + $($tag.get(0)).html().replace('autoplay=0', 'autoplay=1') + '</div>'
       );
     } else {
       $tag.show('slow');
