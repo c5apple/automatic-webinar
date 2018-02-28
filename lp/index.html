@@ -23,7 +23,9 @@
       <div class="row">
         <div class="col-md-6 col-sm-6">
           <!--logo-->
-          <div class="logo"><img src="img/logo.png" alt="AutomaticWebinar"></div>
+          <div class="logo">
+            <img src="img/logo.png" alt="AutomaticWebinar">
+          </div>
           <!--logo end-->
         </div>
         <div class="col-md-6 col-sm-6">
@@ -31,9 +33,21 @@
           <!--social-->
           <div class="social text-center">
             <ul>
-              <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+              <li>
+                <a href="https://twitter.com/" target="_blank">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/" target="_blank">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/" target="_blank">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+              </li>
             </ul>
           </div>
           <!--social end-->
@@ -44,13 +58,11 @@
 
           <!--welcome-message-->
           <header class="welcome-message text-center">
-            <h1><span class="rotate">
-              ウェビナー自動化システム,
-              オプトリスト管理を簡単に,
-              希望に合わせたステップメール,
-              公開日までのタイマー機能,
-              次のフォームよりお申込みください
-            </span></h1>
+            <h1>
+              <span class="rotate">
+                ウェビナー自動化システム, オプトリスト管理を簡単に, 希望に合わせたステップメール, 公開日までのタイマー機能, 次のフォームよりお申込みください
+              </span>
+            </h1>
           </header>
           <!--welcome-message end-->
 
@@ -58,7 +70,7 @@
           <div class="sub-form">
             <div class="row">
               <div class="col-md-6 center-block col-sm-9 col-xs-11 container">
-                <form role="form" class="aw-form" action="/api/opt" data-thanks="/lp/sp.html" method="POST">
+                <form role="form" class="aw-form" action="/automatic-webinar/api/opt" data-thanks="/automatic-webinar/lp/sp.html" method="POST">
                   <input type="hidden" name="webinarId" value="1">
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label">メールアドレス</label>
@@ -73,7 +85,9 @@
                         <select class="preferredDate form-control" name="preferredDate" required>
                         </select>
                         <span class="input-group-btn">
-                          <button type="submit" class="aw-subscribe btn btn-default" value="Subscribe" name="subscribe">Submit<i class="fa fa-paper-plane"></i></button>
+                          <button type="submit" class="aw-subscribe btn btn-default" value="Subscribe" name="subscribe">Submit
+                            <i class="fa fa-paper-plane"></i>
+                          </button>
                         </span>
                       </div>
                     </div>
@@ -81,7 +95,8 @@
                 </form>
                 <p class="aw-notification text-center"></p>
                 <p class="aw-success" style="display:none">
-                  <span class="success"><i class="fa fa-envelope"></i>お申込みありがとうございます。</span>
+                  <span class="success">
+                    <i class="fa fa-envelope"></i>お申込みありがとうございます。</span>
                 </p>
                 <p class="aw-error" style="display:none">
                   <span class="alert">サーバーに接続できませんでした。後でもう一度お試しください。</span>
@@ -93,19 +108,23 @@
 
           <!-- Countdown-->
           <ul class="countdown text-center">
-            <li> <span class="days">00</span>
+            <li>
+              <span class="days">00</span>
               <p class="days_ref">days</p>
             </li>
             <li class="seperator">|</li>
-            <li> <span class="hours">00</span>
+            <li>
+              <span class="hours">00</span>
               <p class="hours_ref">hours</p>
             </li>
             <li class="seperator">|</li>
-            <li> <span class="minutes">00</span>
+            <li>
+              <span class="minutes">00</span>
               <p class="minutes_ref">minutes</p>
             </li>
             <li class="seperator">|</li>
-            <li> <span class="seconds">00</span>
+            <li>
+              <span class="seconds">00</span>
               <p class="seconds_ref">seconds</p>
             </li>
           </ul>
@@ -134,7 +153,9 @@
       <div class="row">
         <div class="col-md-12">
           <div class="wow fadeInUp product-features row">
-            <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-envelope-o fa-3x"></i></div>
+            <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+              <i class="fa fa-envelope-o fa-3x"></i>
+            </div>
             <div class="col-md-10 col-sm-10 col-xs-10">
               <!--features 1-->
               <h4>オプトリスト収集</h4>
@@ -149,7 +170,8 @@
               <br>
               <p>★1 ... APIのURLを書いてください。(/api/opt は必須です)</p>
               <p>★2 ... AutomaticWebinar管理システムで作成したウェビナーIDを書いてください。</p>
-              <pre class="prettyprint linenums"><code class="lang-html">&lt;form role="form" class="aw-form" action="★1/api/opt" method="POST"&gt;
+              <p>★3 ... お申込み完了後に別ページに遷移させたい場合、URLを書いてください。遷移させたくない場合はdata-thanks属性自体を書かないようにしてください。</p>
+              <pre class="prettyprint linenums"><code class="lang-html">&lt;form role="form" class="aw-form" action="★1/api/opt" data-thanks="★3/thanks.html" method="POST"&gt;
   &lt;!-- ウェビナーID --&gt;
   &lt;input type="hidden" name="webinarId" value="★2"&gt;
   &lt;!-- メールアドレス --&gt;
@@ -170,27 +192,33 @@
 </code></pre>
               <br>
               <p>bodyタグの直前に次のスクリプトを埋め込んでください。</p>
-              <pre class="prettyprint linenums"><code class="lang-html">  &lt;script async src="js/automatic-webinar.min.js"&gt;&lt;/script&gt;
-&lt/body&gt;</code></pre>
+              <pre class="prettyprint linenums"><code class="lang-html">  &lt;script src="js/jquery-1.11.1.min.js"&gt;&lt;/script&gt;
+  &lt;script src="js/jquery.downCount.js"&gt;&lt;/script&gt;
+  &lt;script async src="js/automatic-webinar-1.4.1.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
               <br>
               <h6>2.メッセージのカスタマイズ</h6>
               <p>★3 ... メッセージのHTMLを書いてください。中にタグ追加やclassは自由に書いてOKです。</p>
               <p>本デモページでは次のようにカスタマイズしていますので参考にしてください。</p>
-              <pre class="prettyprint linenums"><code class="lang-html">&lt;p id="aw-success" style="display:none"&gt;
+              <pre class="prettyprint linenums"><code class="lang-html">&lt;p class="aw-success" style="display:none"&gt;
   &lt;span class="success"&gt;&lt;i class="fa fa-envelope"&gt;&lt;/i&gt;お申込みありがとうございます。&lt;/span&gt;
 &lt;/p&gt;</code></pre>
               <!--features 1 end-->
             </div>
           </div>
           <div class="wow fadeInUp product-features row">
-            <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-clock-o fa-3x"></i></div>
+            <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+              <i class="fa fa-clock-o fa-3x"></i>
+            </div>
             <div class="col-md-10 col-sm-10 col-xs-10">
               <!--features 2-->
               <h4>ウェビナー時限式オープン</h4>
               <p>AutomaticWebinarはタイマー機能を提供します。次のことが簡単に表現できます。</p>
               <br>
-              <p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 申し込み期間終了まであとxx時間！</p>
-              <p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> ウェビナーはあとxx分で始まります！</p>
+              <p>
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 申し込み期間終了まであとxx時間！</p>
+              <p>
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> ウェビナーはあとxx分で始まります！</p>
               <br>
               <h5>使い方</h5>
               <h6>1.ランディングページhtmlおよびウェビナーページhtmlへの反映方法</h6>
@@ -267,14 +295,27 @@
           <!--social-->
 
           <ul class="social">
-            <li class="wow fadeInUp"><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <li class="wow fadeInUp"><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-            <li class="wow fadeInUp"><a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            <li class="wow fadeInUp">
+              <a href="https://twitter.com/" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li class="wow fadeInUp">
+              <a href="https://www.facebook.com/" target="_blank">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li class="wow fadeInUp">
+              <a href="https://plus.google.com/" target="_blank">
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </li>
           </ul>
 
           <!--social end-->
 
-          <small class="wow fadeInUp">Copyright © 2017 AutomaticWebinar All Rights Reserved.</small> </div>
+          <small class="wow fadeInUp">Copyright © 2017 AutomaticWebinar All Rights Reserved.</small>
+        </div>
       </div>
     </div>
   </footer>
